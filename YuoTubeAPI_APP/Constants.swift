@@ -14,4 +14,5 @@ struct K {
     static let playlistMinimumLineSpacing: CGFloat = 10
     static let itemWidth: CGFloat = (UIScreen.main.bounds.width - leftDistanceToView - rightDistanceToView - (playlistMinimumLineSpacing / 2)) / 2
     static let galleryItemWidth: CGFloat = UIScreen.main.bounds.width - leftDistanceToView - rightDistanceToView
+    
 }
