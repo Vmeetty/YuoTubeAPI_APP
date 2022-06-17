@@ -26,6 +26,7 @@ class PlaylistCollectionView: UICollectionView {
         
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+        
     }
     
     required init?(coder: NSCoder) {
