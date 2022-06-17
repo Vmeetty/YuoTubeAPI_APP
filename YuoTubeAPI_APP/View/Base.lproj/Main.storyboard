@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,22 +24,72 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gAg-Y2-8LD">
+                                <rect key="frame" x="10" y="167" width="394" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="BJD-FT-HkL"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ws1-TC-eFr">
+                                    <size key="itemSize" width="347" height="185"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCollectionViewCell" id="NtT-Gl-FfN" customClass="GalleryCollectionViewCell" customModule="YuoTubeAPI_APP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="7.5" width="347" height="185"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TQ4-hu-KJg">
+                                            <rect key="frame" x="0.0" y="0.0" width="347" height="185"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="41L-Oc-iUc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="347" height="185"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="41L-Oc-iUc" secondAttribute="bottom" id="Hpo-b1-ZKS"/>
+                                                <constraint firstItem="41L-Oc-iUc" firstAttribute="leading" secondItem="TQ4-hu-KJg" secondAttribute="leading" id="RO8-sf-UQ3"/>
+                                                <constraint firstItem="41L-Oc-iUc" firstAttribute="top" secondItem="TQ4-hu-KJg" secondAttribute="top" id="ang-Vv-7BF"/>
+                                                <constraint firstAttribute="trailing" secondItem="41L-Oc-iUc" secondAttribute="trailing" id="hQz-cZ-OLW"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="347" height="185"/>
+                                        <connections>
+                                            <outlet property="mainImageView" destination="41L-Oc-iUc" id="lTQ-Ze-fy2"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="4lJ-dc-djh">
+                                <rect key="frame" x="149" y="387" width="116" height="26"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3Y7-g4-471" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="4KD-Un-MB4"/>
+                            <constraint firstItem="gAg-Y2-8LD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="6zk-tj-jV1"/>
+                            <constraint firstItem="gAg-Y2-8LD" firstAttribute="top" secondItem="3Y7-g4-471" secondAttribute="bottom" constant="40" id="Mba-rv-ZtW"/>
+                            <constraint firstItem="4lJ-dc-djh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NWa-cC-B3q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gAg-Y2-8LD" secondAttribute="trailing" constant="10" id="RFt-31-D5l"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Y7-g4-471" secondAttribute="trailing" constant="10" id="aeP-Uz-WoC"/>
                             <constraint firstItem="3Y7-g4-471" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="avU-S6-NQ1"/>
+                            <constraint firstItem="4lJ-dc-djh" firstAttribute="top" secondItem="gAg-Y2-8LD" secondAttribute="bottom" constant="20" id="kq5-28-hgp"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="galleryCollectionView" destination="gAg-Y2-8LD" id="XAS-JC-JVQ"/>
+                        <outlet property="pageControl" destination="4lJ-dc-djh" id="8O6-Ve-Ok9"/>
                         <outlet property="titleLabel" destination="3Y7-g4-471" id="hii-f7-L0v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="94"/>
+            <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
         </scene>
     </scenes>
     <resources>
