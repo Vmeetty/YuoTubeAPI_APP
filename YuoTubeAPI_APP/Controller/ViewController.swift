@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var galleryCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     private let playlistCollectionView = PlaylistCollectionView()
     private let secondPlaylistCollectionView = SecondPlaylistCollectionView()
@@ -42,38 +44,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
         
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
         pageControl.numberOfPages = galleryCells.count
         
-        //MARK: - playListLabel constraints
         view.addSubview(playListLabel)
-        playListLabel.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 40).isActive = true
-        playListLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        playListLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
-       
-        //MARK: - PlaylistCollectionView constraints
         view.addSubview(playlistCollectionView)
-        playlistCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        playlistCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        playlistCollectionView.topAnchor.constraint(equalTo: playListLabel.bottomAnchor, constant: 20).isActive = true
-        playlistCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        playlistCollectionView.set(cells: VideoModel.fetchVideo())
-        
-        //MARK: - secondPlayListLabel constraints
         view.addSubview(secondPlayListLabel)
-        secondPlayListLabel.topAnchor.constraint(equalTo: playlistCollectionView.bottomAnchor, constant: 40).isActive = true
-        secondPlayListLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        secondPlayListLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
-       
-        //MARK: - PlaylistCollectionView constraints
         view.addSubview(secondPlaylistCollectionView)
-        secondPlaylistCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        secondPlaylistCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        secondPlaylistCollectionView.topAnchor.constraint(equalTo: secondPlayListLabel.bottomAnchor, constant: 20).isActive = true
-        secondPlaylistCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        setupViewConstraints()
+        
+        playlistCollectionView.set(cells: VideoModel.fetchVideo())
         secondPlaylistCollectionView.set(cells: VideoModel.fetchVideo())
         
         let timerOn = TimerOn(timer: timer)
@@ -118,4 +100,29 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension ViewController {
+    private func setupViewConstraints() {
+        //MARK: - playListLabel constraints
+        playListLabel.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 30).isActive = true
+        playListLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
+        playListLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 10).isActive = true
+       
+        //MARK: - PlaylistCollectionView constraints
+        playlistCollectionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        playlistCollectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        playlistCollectionView.topAnchor.constraint(equalTo: playListLabel.bottomAnchor, constant: 20).isActive = true
+        playlistCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        //MARK: - secondPlayListLabel constraints
+        secondPlayListLabel.topAnchor.constraint(equalTo: playlistCollectionView.bottomAnchor, constant: 30).isActive = true
+        secondPlayListLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10).isActive = true
+        secondPlayListLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 10).isActive = true
+       
+        //MARK: - PlaylistCollectionView constraints
+        secondPlaylistCollectionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        secondPlaylistCollectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        secondPlaylistCollectionView.topAnchor.constraint(equalTo: secondPlayListLabel.bottomAnchor, constant: 20).isActive = true
+        secondPlaylistCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+    }
+}
 
