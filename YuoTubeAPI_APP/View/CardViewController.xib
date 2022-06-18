@@ -78,16 +78,16 @@
                                                     </subviews>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="m30-Nt-MpF">
-                                                    <rect key="frame" x="151.5" y="110" width="91.5" height="58"/>
+                                                    <rect key="frame" x="0.0" y="110" width="394" height="58"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4c-ty-aSp">
-                                                            <rect key="frame" x="0.0" y="0.0" width="91.5" height="25.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="394" height="25.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View count " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-5G-SmJ">
-                                                            <rect key="frame" x="0.0" y="38.5" width="91.5" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="38.5" width="394" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -125,6 +125,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="a1i-68-I4C" firstAttribute="leading" secondItem="D2O-Hf-slT" secondAttribute="leading" constant="30" id="Kdg-pB-dl5"/>
+                                                <constraint firstItem="m30-Nt-MpF" firstAttribute="leading" secondItem="D2O-Hf-slT" secondAttribute="leading" id="Kna-kv-tOb"/>
+                                                <constraint firstAttribute="trailing" secondItem="m30-Nt-MpF" secondAttribute="trailing" id="Wrt-Ki-3Xy"/>
                                                 <constraint firstAttribute="trailing" secondItem="a1i-68-I4C" secondAttribute="trailing" constant="30" id="ofz-Iq-iTZ"/>
                                             </constraints>
                                         </stackView>
