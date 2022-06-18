@@ -21,6 +21,8 @@
 		CE00A416285C290100DAC418 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A415285C290100DAC418 /* GalleryCollectionViewCell.swift */; };
 		CE00A418285CAA2700DAC418 /* SecondPlaylistCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A417285CAA2700DAC418 /* SecondPlaylistCollectionView.swift */; };
 		CE00A41A285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A419285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift */; };
+		CE00A41D285DF2C200DAC418 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A41B285DF2C200DAC418 /* CardViewController.swift */; };
+		CE00A41E285DF2C200DAC418 /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE00A41C285DF2C200DAC418 /* CardViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		CE00A415285C290100DAC418 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE00A417285CAA2700DAC418 /* SecondPlaylistCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPlaylistCollectionView.swift; sourceTree = "<group>"; };
 		CE00A419285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE00A41B285DF2C200DAC418 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		CE00A41C285DF2C200DAC418 /* CardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				CE00A419285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift */,
 				CE00A3F6285B319A00DAC418 /* Main.storyboard */,
 				CE00A415285C290100DAC418 /* GalleryCollectionViewCell.swift */,
+				CE00A41B285DF2C200DAC418 /* CardViewController.swift */,
+				CE00A41C285DF2C200DAC418 /* CardViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,6 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE00A41E285DF2C200DAC418 /* CardViewController.xib in Resources */,
 				CE00A3FD285B319B00DAC418 /* LaunchScreen.storyboard in Resources */,
 				CE00A3FA285B319B00DAC418 /* Assets.xcassets in Resources */,
 				CE00A3F8285B319A00DAC418 /* Main.storyboard in Resources */,
@@ -194,6 +201,7 @@
 				CE00A3F1285B319A00DAC418 /* AppDelegate.swift in Sources */,
 				CE00A40E285BE30400DAC418 /* Constants.swift in Sources */,
 				CE00A40A285BAED500DAC418 /* VideoModel.swift in Sources */,
+				CE00A41D285DF2C200DAC418 /* CardViewController.swift in Sources */,
 				CE00A416285C290100DAC418 /* GalleryCollectionViewCell.swift in Sources */,
 				CE00A41A285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift in Sources */,
 				CE00A3F3285B319A00DAC418 /* SceneDelegate.swift in Sources */,
