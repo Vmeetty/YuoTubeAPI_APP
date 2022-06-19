@@ -24,11 +24,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUF-N0-UHR" userLabel="ContainerView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1EO-8s-ABA">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4NI-SP-WZy">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sz5-zZ-rP3" userLabel="HandleArea">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3V-KH-nRU">
                                             <rect key="frame" x="162" y="22" width="91" height="7"/>
@@ -37,21 +37,21 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="7dh-k5-ZMh"/>
+                                        <constraint firstAttribute="height" constant="65" id="t6L-6m-ubq"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqq-e7-66I" userLabel="VideoArea">
-                                    <rect key="frame" x="0.0" y="50" width="414" height="225"/>
+                                    <rect key="frame" x="0.0" y="65" width="414" height="200"/>
                                     <color key="backgroundColor" red="0.075056789799999996" green="0.078305075020000003" blue="0.081498579550000005" alpha="0.88094991720000004" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="225" id="XZ8-XY-JmW"/>
+                                        <constraint firstAttribute="height" constant="200" id="ymC-ZY-QbV"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKO-2N-78M" userLabel="Controls">
-                                    <rect key="frame" x="0.0" y="275" width="414" height="364"/>
+                                    <rect key="frame" x="0.0" y="265" width="414" height="374"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="D2O-Hf-slT">
-                                            <rect key="frame" x="10" y="8" width="394" height="336"/>
+                                            <rect key="frame" x="10" y="8" width="394" height="326"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qee-pH-19J">
                                                     <rect key="frame" x="13" y="0.0" width="368" height="69"/>
@@ -116,7 +116,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="a1i-68-I4C">
-                                                    <rect key="frame" x="28" y="296" width="338" height="41"/>
+                                                    <rect key="frame" x="28" y="296" width="338" height="31"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <imageReference key="minimumValueImage" image="volume.fill" catalog="system" symbolScale="small"/>
                                                     <imageReference key="maximumValueImage" image="volume.3.fill" catalog="system" symbolScale="small"/>
@@ -134,27 +134,31 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     <constraints>
-                                        <constraint firstItem="D2O-Hf-slT" firstAttribute="top" secondItem="OKO-2N-78M" secondAttribute="top" constant="8" id="GY4-Ae-zM7"/>
-                                        <constraint firstAttribute="bottom" secondItem="D2O-Hf-slT" secondAttribute="bottom" constant="20" id="PpP-Rg-gYM"/>
+                                        <constraint firstItem="D2O-Hf-slT" firstAttribute="top" secondItem="OKO-2N-78M" secondAttribute="top" constant="8" id="3VB-nR-bBK"/>
+                                        <constraint firstAttribute="bottom" secondItem="D2O-Hf-slT" secondAttribute="bottom" constant="40" id="g0i-Ec-8ET"/>
                                         <constraint firstAttribute="trailing" secondItem="D2O-Hf-slT" secondAttribute="trailing" constant="10" id="tYQ-yQ-pRQ"/>
                                         <constraint firstItem="D2O-Hf-slT" firstAttribute="leading" secondItem="OKO-2N-78M" secondAttribute="leading" constant="10" id="yxj-EB-Z6g"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="OKO-2N-78M" secondAttribute="bottom" id="4SE-E5-0lK"/>
-                                <constraint firstItem="Sz5-zZ-rP3" firstAttribute="top" secondItem="1EO-8s-ABA" secondAttribute="top" id="DZE-9Y-2SB"/>
-                                <constraint firstItem="OKO-2N-78M" firstAttribute="top" secondItem="Dqq-e7-66I" secondAttribute="bottom" id="QUr-di-5hN"/>
-                                <constraint firstItem="Dqq-e7-66I" firstAttribute="top" secondItem="Sz5-zZ-rP3" secondAttribute="bottom" id="Wqg-Q4-0xF"/>
+                                <constraint firstItem="Sz5-zZ-rP3" firstAttribute="top" secondItem="4NI-SP-WZy" secondAttribute="top" id="1hy-58-dAg"/>
+                                <constraint firstItem="Sz5-zZ-rP3" firstAttribute="leading" secondItem="4NI-SP-WZy" secondAttribute="leading" id="2h3-r5-fzv"/>
+                                <constraint firstAttribute="trailing" secondItem="Dqq-e7-66I" secondAttribute="trailing" id="4NF-Tk-Bws"/>
+                                <constraint firstItem="OKO-2N-78M" firstAttribute="top" secondItem="Dqq-e7-66I" secondAttribute="bottom" id="8Nb-Mx-INo"/>
+                                <constraint firstAttribute="trailing" secondItem="Sz5-zZ-rP3" secondAttribute="trailing" id="9WJ-zi-IZ7"/>
+                                <constraint firstItem="Dqq-e7-66I" firstAttribute="top" secondItem="Sz5-zZ-rP3" secondAttribute="bottom" id="CgX-xG-d1u"/>
+                                <constraint firstAttribute="bottom" secondItem="OKO-2N-78M" secondAttribute="bottom" id="LMC-hV-DsG"/>
+                                <constraint firstItem="Dqq-e7-66I" firstAttribute="leading" secondItem="4NI-SP-WZy" secondAttribute="leading" id="Zba-DJ-z8o"/>
                             </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemPurpleColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="1EO-8s-ABA" secondAttribute="trailing" id="J7z-uM-nDP"/>
-                        <constraint firstItem="1EO-8s-ABA" firstAttribute="top" secondItem="RUF-N0-UHR" secondAttribute="top" id="LHM-iT-Lfu"/>
-                        <constraint firstAttribute="bottom" secondItem="1EO-8s-ABA" secondAttribute="bottom" id="WHS-kJ-QtZ"/>
-                        <constraint firstItem="1EO-8s-ABA" firstAttribute="leading" secondItem="RUF-N0-UHR" secondAttribute="leading" id="vij-Be-biw"/>
+                        <constraint firstItem="4NI-SP-WZy" firstAttribute="leading" secondItem="RUF-N0-UHR" secondAttribute="leading" id="3f0-Oc-sZz"/>
+                        <constraint firstAttribute="trailing" secondItem="4NI-SP-WZy" secondAttribute="trailing" id="ABX-aK-hiG"/>
+                        <constraint firstItem="4NI-SP-WZy" firstAttribute="top" secondItem="RUF-N0-UHR" secondAttribute="top" id="go2-ze-s3N"/>
+                        <constraint firstAttribute="bottom" secondItem="4NI-SP-WZy" secondAttribute="bottom" id="heZ-wS-zi6"/>
                     </constraints>
                 </view>
             </subviews>

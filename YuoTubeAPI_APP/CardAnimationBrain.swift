@@ -23,7 +23,7 @@ class CardAnimationBrain {
     private var rootViewController: UIViewController!
     
     private let cardHeight: CGFloat = 700
-    private let cardHandleAreaHeight: CGFloat = 50
+    private let cardHandleAreaHeight: CGFloat = 65
     
     private var cardVisible = false
     private var nextStep: CardState {
@@ -42,7 +42,6 @@ class CardAnimationBrain {
         rootViewController = sender
         
         visualEffectView.frame = rootViewController.view.frame
-        visualEffectView.backgroundColor = .red
         rootViewController.view.addSubview(visualEffectView)
         
         cardViewController = CardViewController(nibName: "CardViewController", bundle: nil)
