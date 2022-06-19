@@ -22,7 +22,7 @@ class CardAnimationBrain {
     private var cardViewController: CardViewController!
     private var rootViewController: UIViewController!
     
-    private let cardHeight: CGFloat = 700
+    private let cardHeight: CGFloat = 650
     private let cardHandleAreaHeight: CGFloat = 65
     
     private var cardVisible = false
