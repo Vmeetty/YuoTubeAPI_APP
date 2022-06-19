@@ -25,6 +25,7 @@ class CardAnimationBrain {
     private let cardHeight: CGFloat = 650
     private let cardHandleAreaHeight: CGFloat = 65
     private let handleViewCornerRadius: CGFloat = 20
+    private let handleWidth = 45
     private var handleViewFrame: CGRect!
     
     private var cardVisible = false
@@ -35,31 +36,35 @@ class CardAnimationBrain {
     private var runningAnimations = [UIViewPropertyAnimator]()
     private var animationProgressWhenInterrupted: CGFloat = 0
     
+    private let fakeHandleView: UIView = {
+        let handleView = UIView()
+        handleView.backgroundColor = K.Colors.firstColor
+        handleView.clipsToBounds = true
+        return handleView
+    }()
+    
+    let iconImageView: UIImageView = {
+        let iconImage = UIImage(named: "up-arrow")
+        let imageView = UIImageView()
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        imageView.image = iconImage
+        return imageView
+    }()
+    
+    
     func setupFakeHandleView(_ sender: UIViewController) {
-        rootViewController = sender
-        let fakeHandleView = UIView()
-        fakeHandleView.translatesAutoresizingMaskIntoConstraints = false
-        fakeHandleView.frame = CGRect(x: 0, y: rootViewController.view.frame.height - cardHandleAreaHeight, width: rootViewController.view.bounds.width, height: cardHeight)
-        fakeHandleView.backgroundColor = K.Colors.firstColor
-        fakeHandleView.layer.cornerRadius = handleViewCornerRadius
-        fakeHandleView.clipsToBounds = true
         
+        rootViewController = sender
+        
+        fakeHandleView.frame = CGRect(x: 0, y: rootViewController.view.frame.height - cardHandleAreaHeight, width: rootViewController.view.bounds.width, height: cardHeight)
+        fakeHandleView.layer.cornerRadius = handleViewCornerRadius
         rootViewController.view.addSubview(fakeHandleView)
         
-        let iconImage = UIImage(named: "up-arrow")
-        let iconImageView = UIImageView()
-        iconImageView.contentMode = UIView.ContentMode.scaleAspectFit
-        let handleWidth = 45
         iconImageView.frame = CGRect(x: (Int(fakeHandleView.bounds.width) / 2) - Int(handleWidth / 2), y: 5, width: handleWidth, height: 30)
-        iconImageView.image = iconImage
         fakeHandleView.addSubview(iconImageView)
 
+        fakeGestureConfig()
         configCardView()
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fakeHandleViewTapt(recognizer:)))
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(fakeHandleViewPan(recognizer:)))
-        fakeHandleView.addGestureRecognizer(tapGestureRecognizer)
-        fakeHandleView.addGestureRecognizer(panGestureRecognizer)
     }
  
     
@@ -85,10 +90,17 @@ class CardAnimationBrain {
         cardViewController.view.clipsToBounds = true
         
         gradientConfig()
-        gestureRecognizerConfig()
+        cardGestureConfig()
     }
     
-    private func gestureRecognizerConfig() {
+    private func fakeGestureConfig() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fakeHandleViewTapt(recognizer:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(fakeHandleViewPan(recognizer:)))
+        fakeHandleView.addGestureRecognizer(tapGestureRecognizer)
+        fakeHandleView.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    private func cardGestureConfig() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCardTap(recognizer:)))
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
         cardViewController.handleArea.addGestureRecognizer(tapGestureRecognizer)
