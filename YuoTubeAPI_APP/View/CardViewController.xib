@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardViewController" customModule="YuoTubeAPI_APP" customModuleProvider="target">
             <connections>
+                <outlet property="containerView" destination="RUF-N0-UHR" id="9ty-gv-m2h"/>
                 <outlet property="handleArea" destination="Sz5-zZ-rP3" id="gjL-dW-xfq"/>
+                <outlet property="handleIcon" destination="VDy-Dq-wTL" id="WSi-Rm-ea8"/>
                 <outlet property="nextButton" destination="NSV-SM-DL0" id="Qeq-cb-2pa"/>
                 <outlet property="playButton" destination="U33-wm-gDc" id="R6d-Nn-ym1"/>
                 <outlet property="previosButton" destination="5g2-s5-Va2" id="Q2a-Zd-Wab"/>
@@ -33,11 +35,10 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sz5-zZ-rP3" userLabel="HandleArea">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3V-KH-nRU">
-                                            <rect key="frame" x="162" y="22" width="91" height="7"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="down-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="VDy-Dq-wTL">
+                                            <rect key="frame" x="184" y="8" width="45" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        </view>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="65" id="t6L-6m-ubq"/>
@@ -141,7 +142,6 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     <constraints>
                                         <constraint firstItem="D2O-Hf-slT" firstAttribute="top" secondItem="OKO-2N-78M" secondAttribute="top" constant="8" id="3VB-nR-bBK"/>
                                         <constraint firstAttribute="bottom" secondItem="D2O-Hf-slT" secondAttribute="bottom" constant="40" id="g0i-Ec-8ET"/>
@@ -184,6 +184,7 @@
         </view>
     </objects>
     <resources>
+        <image name="down-arrow" width="165" height="69"/>
         <image name="next" width="32" height="32"/>
         <image name="pause" width="32" height="32"/>
         <image name="previos" width="32" height="32"/>

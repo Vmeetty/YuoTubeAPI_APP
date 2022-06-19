@@ -45,7 +45,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
         pageControl.numberOfPages = galleryCells.count
@@ -62,11 +61,9 @@ class ViewController: UIViewController {
         let timerOn = TimerOn(timer: timer)
         timerOn.execute(sender: self)
         
-        cardAnimationBrain.setupCardFor(self)
-
+        cardAnimationBrain.setupFakeHandleView(self)
     }
 
-    
     @objc func moveToTheNextIndex() {
         if currentIndex < galleryCells.count - 1 {
             currentIndex += 1
@@ -76,7 +73,6 @@ class ViewController: UIViewController {
         galleryCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
         pageControl.currentPage = currentIndex
     }
-
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -89,8 +85,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.mainImageView.image = galleryCells[indexPath.row].image
         return cell
     }
-    
-    
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {

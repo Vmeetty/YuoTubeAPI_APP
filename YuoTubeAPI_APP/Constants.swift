@@ -15,4 +15,8 @@ struct K {
     static let itemWidth: CGFloat = (UIScreen.main.bounds.width - leftDistanceToView - rightDistanceToView - (playlistMinimumLineSpacing / 2)) / 2
     static let galleryItemWidth: CGFloat = UIScreen.main.bounds.width - leftDistanceToView - rightDistanceToView
     
+    struct Colors {
+        static let firstColor = UIColor(red: 0.97, green: 0.24, blue: 0.58, alpha: 1.00)
+        static let secondColor = UIColor(red: 0.46, green: 0.29, blue: 0.95, alpha: 1.00)
+    }
 }

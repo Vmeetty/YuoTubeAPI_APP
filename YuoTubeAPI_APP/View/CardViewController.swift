@@ -9,10 +9,12 @@ import UIKit
 
 class CardViewController: UIViewController {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var handleArea: UIView!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previosButton: UIButton!
+    @IBOutlet weak var handleIcon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
