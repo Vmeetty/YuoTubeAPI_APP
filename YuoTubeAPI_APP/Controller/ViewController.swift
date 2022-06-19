@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     private let playlistCollectionView = PlaylistCollectionView()
     private let secondPlaylistCollectionView = SecondPlaylistCollectionView()
+    var cardAnimationBrain = CardAnimationBrain.shared
     
     var galleryCells = VideoModel.fetchVideo()
     
@@ -60,6 +61,8 @@ class ViewController: UIViewController {
         
         let timerOn = TimerOn(timer: timer)
         timerOn.execute(sender: self)
+        
+        cardAnimationBrain.setupCardFor(self)
 
     }
 

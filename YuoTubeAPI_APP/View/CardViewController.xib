@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardViewController" customModule="YuoTubeAPI_APP" customModuleProvider="target">
             <connections>
+                <outlet property="handleArea" destination="Sz5-zZ-rP3" id="gjL-dW-xfq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
