@@ -44,7 +44,7 @@ class SecondPlaylistCollectionViewCell: UICollectionViewCell {
         addSubview(titleLabel)
         addSubview(viewsLabel)
         
-        backgroundColor = .black
+        backgroundColor = K.Colors.backGroundColor
         
         //MARK: - mainImageView constraints
         mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true

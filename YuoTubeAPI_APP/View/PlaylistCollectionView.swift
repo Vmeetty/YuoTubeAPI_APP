@@ -16,7 +16,7 @@ class PlaylistCollectionView: UICollectionView {
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        backgroundColor = .black
+        backgroundColor = K.Colors.backGroundColor
         delegate = self
         dataSource = self
         register(PlaylistCollectionViewCell.self, forCellWithReuseIdentifier: PlaylistCollectionViewCell.reuseID)
