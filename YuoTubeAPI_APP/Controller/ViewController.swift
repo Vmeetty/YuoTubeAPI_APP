@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-//    @IBOutlet weak var pageControl: UIPageControl!
+    let pageControl = UIPageControl()
 
     let scrollView = UIScrollView()
     let contentView = UIView()
@@ -54,14 +54,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        pageControl.numberOfPages = galleryCells.count
+        pageControl.numberOfPages = galleryCells.count
         
         contentView.backgroundColor = K.Colors.backGroundColor
         scrollView.backgroundColor = K.Colors.backGroundColor
         
         setupScrollView()
         setupUI()
-
+        
         let videos = VideoModel.fetchVideo()
         galleryCollectionView.set(cells: videos)
         playlistCollectionView.set(cells: videos)
@@ -79,8 +79,10 @@ class ViewController: UIViewController {
         } else {
             currentIndex = 0
         }
+        galleryCollectionView.isPagingEnabled = false
         galleryCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
-//        pageControl.currentPage = currentIndex
+        galleryCollectionView.isPagingEnabled = true
+        pageControl.currentPage = currentIndex
     }
     
 }

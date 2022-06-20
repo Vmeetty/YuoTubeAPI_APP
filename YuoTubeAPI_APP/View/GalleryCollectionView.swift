@@ -21,7 +21,8 @@ class GalleryCollectionView: UICollectionView {
         dataSource = self
         register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: GalleryCollectionViewCell.reuseID)
         translatesAutoresizingMaskIntoConstraints = false
-        layout.minimumLineSpacing = K.playlistMinimumLineSpacing
+        
+//        layout.minimumLineSpacing = 200
         contentInset = UIEdgeInsets(top: 0, left: K.leftDistanceToView, bottom: 0, right: K.rightDistanceToView)
         
         showsHorizontalScrollIndicator = false
@@ -45,6 +46,8 @@ extension GalleryCollectionView: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseID, for: indexPath) as! GalleryCollectionViewCell
         cell.mainImageView.image = cells[indexPath.row].image
+        cell.titleLabel.text = cells[indexPath.row].title
+        cell.viewsLabel.text = cells[indexPath.row].views
         
         return cell
     }
