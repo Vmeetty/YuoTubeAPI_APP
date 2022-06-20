@@ -25,6 +25,7 @@
 		CE00A41E285DF2C200DAC418 /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE00A41C285DF2C200DAC418 /* CardViewController.xib */; };
 		CE00A420285E2CE600DAC418 /* CardAnimationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A41F285E2CE600DAC418 /* CardAnimationBrain.swift */; };
 		CE00A4222860445300DAC418 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A4212860445300DAC418 /* Extensions.swift */; };
+		CEFE6A0C2860642F00E18DD3 /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A0B2860642F00E18DD3 /* GalleryCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		CE00A41C285DF2C200DAC418 /* CardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
 		CE00A41F285E2CE600DAC418 /* CardAnimationBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimationBrain.swift; sourceTree = "<group>"; };
 		CE00A4212860445300DAC418 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CEFE6A0B2860642F00E18DD3 /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				CE00A417285CAA2700DAC418 /* SecondPlaylistCollectionView.swift */,
 				CE00A419285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift */,
 				CE00A3F6285B319A00DAC418 /* Main.storyboard */,
+				CEFE6A0B2860642F00E18DD3 /* GalleryCollectionView.swift */,
 				CE00A415285C290100DAC418 /* GalleryCollectionViewCell.swift */,
 				CE00A41B285DF2C200DAC418 /* CardViewController.swift */,
 				CE00A41C285DF2C200DAC418 /* CardViewController.xib */,
@@ -218,6 +221,7 @@
 				CE00A418285CAA2700DAC418 /* SecondPlaylistCollectionView.swift in Sources */,
 				CE00A410285BECB200DAC418 /* PlaylistCollectionView.swift in Sources */,
 				CE00A412285BECC800DAC418 /* PlaylistCollectionViewCell.swift in Sources */,
+				CEFE6A0C2860642F00E18DD3 /* GalleryCollectionView.swift in Sources */,
 				CE00A3F5285B319A00DAC418 /* ViewController.swift in Sources */,
 				CE00A414285C03CE00DAC418 /* GalleryTimer.swift in Sources */,
 				CE00A420285E2CE600DAC418 /* CardAnimationBrain.swift in Sources */,

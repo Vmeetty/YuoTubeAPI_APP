@@ -56,13 +56,3 @@ class TimerOff {
     }
 }
 
-//class GalleryTimer {
-//
-//    static let shared = GalleryTimer()
-//
-//    private var timer: Timer?
-//
-//    func startTimer(sender: ViewController) {
-//        timer = Timer.scheduledTimer(timeInterval: 2.0, target: sender, selector: #selector(sender.moveToTheNextIndex), userInfo: nil, repeats: true)
-//    }
-//}
