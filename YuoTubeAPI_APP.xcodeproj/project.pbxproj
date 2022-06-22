@@ -26,6 +26,9 @@
 		CE00A420285E2CE600DAC418 /* CardAnimationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A41F285E2CE600DAC418 /* CardAnimationBrain.swift */; };
 		CE00A4222860445300DAC418 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A4212860445300DAC418 /* Extensions.swift */; };
 		CEFE6A0C2860642F00E18DD3 /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A0B2860642F00E18DD3 /* GalleryCollectionView.swift */; };
+		CEFE6A0F28630EE700E18DD3 /* PlaylistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A0E28630EE700E18DD3 /* PlaylistData.swift */; };
+		CEFE6A112863110100E18DD3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A102863110100E18DD3 /* NetworkManager.swift */; };
+		CEFE6A132863241B00E18DD3 /* ChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A122863241B00E18DD3 /* ChannelData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		CE00A41F285E2CE600DAC418 /* CardAnimationBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimationBrain.swift; sourceTree = "<group>"; };
 		CE00A4212860445300DAC418 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEFE6A0B2860642F00E18DD3 /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
+		CEFE6A0E28630EE700E18DD3 /* PlaylistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistData.swift; sourceTree = "<group>"; };
+		CEFE6A102863110100E18DD3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CEFE6A122863241B00E18DD3 /* ChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 				CE00A4232860452700DAC418 /* Helpers */,
 				CE00A424286045F400DAC418 /* Services */,
 				CE00A408285BAEAC00DAC418 /* Model */,
+				CEFE6A0D28630EBD00E18DD3 /* New Group */,
 				CE00A407285BAE9D00DAC418 /* Controller */,
 				CE00A406285BAE9100DAC418 /* View */,
 				CE00A3F9285B319B00DAC418 /* Assets.xcassets */,
@@ -142,8 +149,18 @@
 			isa = PBXGroup;
 			children = (
 				CE00A41F285E2CE600DAC418 /* CardAnimationBrain.swift */,
+				CEFE6A102863110100E18DD3 /* NetworkManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CEFE6A0D28630EBD00E18DD3 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				CEFE6A0E28630EE700E18DD3 /* PlaylistData.swift */,
+				CEFE6A122863241B00E18DD3 /* ChannelData.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,10 +244,13 @@
 				CE00A420285E2CE600DAC418 /* CardAnimationBrain.swift in Sources */,
 				CE00A3F1285B319A00DAC418 /* AppDelegate.swift in Sources */,
 				CE00A40E285BE30400DAC418 /* Constants.swift in Sources */,
+				CEFE6A0F28630EE700E18DD3 /* PlaylistData.swift in Sources */,
+				CEFE6A112863110100E18DD3 /* NetworkManager.swift in Sources */,
 				CE00A40A285BAED500DAC418 /* VideoModel.swift in Sources */,
 				CE00A41D285DF2C200DAC418 /* CardViewController.swift in Sources */,
 				CE00A416285C290100DAC418 /* GalleryCollectionViewCell.swift in Sources */,
 				CE00A41A285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift in Sources */,
+				CEFE6A132863241B00E18DD3 /* ChannelData.swift in Sources */,
 				CE00A3F3285B319A00DAC418 /* SceneDelegate.swift in Sources */,
 				CE00A4222860445300DAC418 /* Extensions.swift in Sources */,
 			);
