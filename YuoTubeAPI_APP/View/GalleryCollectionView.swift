@@ -9,7 +9,7 @@ import UIKit
 
 class GalleryCollectionView: UICollectionView {
 
-    var cells = [VideoModel]()
+    var cells = [ChannelModel]()
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -19,10 +19,10 @@ class GalleryCollectionView: UICollectionView {
         backgroundColor = K.Colors.backGroundColor
         delegate = self
         dataSource = self
+        
         register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: GalleryCollectionViewCell.reuseID)
         translatesAutoresizingMaskIntoConstraints = false
         
-//        layout.minimumLineSpacing = 200
         contentInset = UIEdgeInsets(top: 0, left: K.leftDistanceToView, bottom: 0, right: K.rightDistanceToView)
         
         showsHorizontalScrollIndicator = false
@@ -33,7 +33,7 @@ class GalleryCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(cells: [VideoModel]) {
+    func set(cells: [ChannelModel]) {
         self.cells = cells
     }
 }
@@ -45,9 +45,9 @@ extension GalleryCollectionView: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseID, for: indexPath) as! GalleryCollectionViewCell
-        cell.mainImageView.image = cells[indexPath.row].image
+        cell.mainImageView.image = cells[indexPath.row].thumbnail
         cell.titleLabel.text = cells[indexPath.row].title
-        cell.viewsLabel.text = cells[indexPath.row].views
+        cell.viewsLabel.text = cells[indexPath.row].subscribers
         
         return cell
     }
@@ -62,3 +62,5 @@ extension GalleryCollectionView: UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
+
+

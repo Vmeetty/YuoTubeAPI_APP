@@ -29,6 +29,7 @@
 		CEFE6A0F28630EE700E18DD3 /* PlaylistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A0E28630EE700E18DD3 /* PlaylistData.swift */; };
 		CEFE6A112863110100E18DD3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A102863110100E18DD3 /* NetworkManager.swift */; };
 		CEFE6A132863241B00E18DD3 /* ChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A122863241B00E18DD3 /* ChannelData.swift */; };
+		CEFE6A152863566A00E18DD3 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A142863566A00E18DD3 /* ChannelModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		CEFE6A0E28630EE700E18DD3 /* PlaylistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistData.swift; sourceTree = "<group>"; };
 		CEFE6A102863110100E18DD3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEFE6A122863241B00E18DD3 /* ChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelData.swift; sourceTree = "<group>"; };
+		CEFE6A142863566A00E18DD3 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				CE00A409285BAED500DAC418 /* VideoModel.swift */,
+				CEFE6A142863566A00E18DD3 /* ChannelModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				CE00A41A285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift in Sources */,
 				CEFE6A132863241B00E18DD3 /* ChannelData.swift in Sources */,
 				CE00A3F3285B319A00DAC418 /* SceneDelegate.swift in Sources */,
+				CEFE6A152863566A00E18DD3 /* ChannelModel.swift in Sources */,
 				CE00A4222860445300DAC418 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

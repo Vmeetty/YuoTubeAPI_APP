@@ -19,9 +19,10 @@ struct Item: Codable {
 }
 
 
-//MARK: - Snippet
+//MARK: - Snippet with title and picture
 struct ChannelSnippet: Codable {
     let title: String
+    let thumbnails: Thumbnails
 }
 
 
@@ -37,5 +38,5 @@ struct RelatedPlaylists: Codable {
 
 //MARK: - Statistics
 struct Statistics: Codable {
-    let viewCount: String
+    let subscriberCount: String
 }

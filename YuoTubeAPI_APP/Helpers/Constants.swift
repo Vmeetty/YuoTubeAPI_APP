@@ -26,7 +26,7 @@ struct K {
         // channelID matches with uploads
         static let CHANNEL_ID         = "UCWOA1ZGywLbqmigxE4Qlvuw" // Netflix
         static let SECOND_CHANNEL_ID  = "UCVTQuK2CaWaTgSsoNkn5AiQ" // HBO
-        static let THIRD_CHANNEL_ID   = "UUvC4D8onUfXzvjTOM-dBfEA" // Marvel
+        static let THIRD_CHANNEL_ID   = "UCvC4D8onUfXzvjTOM-dBfEA" // Marvel
         static let FORTH_CHANNEL_ID   = "UC2-BeLxzUBSs0uSrmzWhJuQ" // 20 century fox
         
         static let PLAYLIST_ID        = ""

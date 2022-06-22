@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     let secondPlaylistCollectionView = SecondPlaylistCollectionView()
     var cardAnimationBrain = CardAnimationBrain.shared
     
+    var networkManager = NetworkManager()
+    
     var galleryCells = VideoModel.fetchVideo()
     
     var timer = GalleryTimer()
@@ -50,9 +52,19 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    let channels = [
+        K.Networking.CHANNEL_ID,
+        K.Networking.SECOND_CHANNEL_ID,
+        K.Networking.THIRD_CHANNEL_ID,
+        K.Networking.FORTH_CHANNEL_ID
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        networkManager.delegate = self
+        networkManager.fetchChannelListWith(channel: channels, andAPIKey: K.Networking.API_KEY)
         
         pageControl.numberOfPages = galleryCells.count
         
@@ -62,8 +74,8 @@ class ViewController: UIViewController {
         setupScrollView()
         setupUI()
         
+        
         let videos = VideoModel.fetchVideo()
-        galleryCollectionView.set(cells: videos)
         playlistCollectionView.set(cells: videos)
         secondPlaylistCollectionView.set(cells: videos)
         
@@ -71,6 +83,7 @@ class ViewController: UIViewController {
         timerOn.execute(sender: self)
         
         cardAnimationBrain.setupFakeHandleView(self)
+        
     }
 
     @objc func moveToTheNextIndex() {
@@ -87,7 +100,17 @@ class ViewController: UIViewController {
     
 }
 
-
+extension ViewController: NetworkManagerDelegate {
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+    func gotChannels(channels: [ChannelModel]) {
+        DispatchQueue.main.async {
+            self.galleryCollectionView.set(cells: channels)
+            self.galleryCollectionView.reloadData()
+        }
+    }
+}
 
 
 
