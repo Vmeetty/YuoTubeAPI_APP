@@ -45,9 +45,8 @@ extension GalleryCollectionView: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseID, for: indexPath) as! GalleryCollectionViewCell
-        cell.mainImageView.image = cells[indexPath.row].thumbnail
-        cell.titleLabel.text = cells[indexPath.row].title
-        cell.viewsLabel.text = cells[indexPath.row].subscribers
+        
+        cell.setCell(channel: cells[indexPath.row])
         
         return cell
     }

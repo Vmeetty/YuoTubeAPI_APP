@@ -36,6 +36,8 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    var channelItem: ChannelModel?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -62,6 +64,35 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             viewsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
             viewsLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
         ])
+    }
+    
+    func setCell(channel: ChannelModel) {
+        channelItem = channel
+        if let item = channelItem {
+            titleLabel.text = item.title
+            viewsLabel.text = item.subscribers + " subscribers"
+            retrieveThumbnailWith(url: item.thumbnail)
+        }
+    }
+    
+    private func retrieveThumbnailWith(url: String) {
+        if let url = URL(string: url) {
+            let session = URLSession.shared
+            let task = session.dataTask(with: url) { data, _, error in
+                if error == nil, data != nil {
+                    if url.absoluteString != self.channelItem?.thumbnail {
+                        return
+                    }
+                    guard let image = UIImage(data: data!) else {
+                        fatalError("Fail to retieve image")
+                    }
+                    DispatchQueue.main.async {
+                        self.mainImageView.image = image
+                    }
+                }
+            }
+            task.resume()
+        }
     }
     
     required init?(coder: NSCoder) {

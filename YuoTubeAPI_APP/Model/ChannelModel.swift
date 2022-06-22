@@ -11,7 +11,7 @@ import UIKit
 struct ChannelModel {
     let title: String
     let subscribers: String
-    let thumbnail: UIImage
+    let thumbnail: String
     
 //    func retrieveChannel() -> ChannelModel {
 //        

@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     var galleryCells = VideoModel.fetchVideo()
     
-    var timer = GalleryTimer()
+//    var timer = GalleryTimer()
     var currentIndex = 0
     
     let titleLabel: UILabel = {
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         return label
     }()
     
-    let channels = [
+    let channelIDs = [
         K.Networking.CHANNEL_ID,
         K.Networking.SECOND_CHANNEL_ID,
         K.Networking.THIRD_CHANNEL_ID,
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         networkManager.delegate = self
-        networkManager.fetchChannelListWith(channel: channels, andAPIKey: K.Networking.API_KEY)
+        networkManager.fetchChannelListWith(channel: channelIDs, andAPIKey: K.Networking.API_KEY)
         
         pageControl.numberOfPages = galleryCells.count
         
@@ -74,13 +74,10 @@ class ViewController: UIViewController {
         setupScrollView()
         setupUI()
         
-        
         let videos = VideoModel.fetchVideo()
         playlistCollectionView.set(cells: videos)
         secondPlaylistCollectionView.set(cells: videos)
         
-        let timerOn = TimerOn(timer: timer)
-        timerOn.execute(sender: self)
         
         cardAnimationBrain.setupFakeHandleView(self)
         
@@ -108,6 +105,7 @@ extension ViewController: NetworkManagerDelegate {
         DispatchQueue.main.async {
             self.galleryCollectionView.set(cells: channels)
             self.galleryCollectionView.reloadData()
+            Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.moveToTheNextIndex), userInfo: nil, repeats: true)
         }
     }
 }

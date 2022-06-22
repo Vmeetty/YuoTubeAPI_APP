@@ -58,8 +58,8 @@ struct NetworkManager {
                 let title = item.snippet.title
                 let subscribers = item.statistics.subscriberCount
                 let imageUrlStr = item.snippet.thumbnails.medium.url
-                let thumbnail = retrieveThumbnailWith(url: imageUrlStr)
-                let channel = ChannelModel(title: title, subscribers: subscribers, thumbnail: thumbnail)
+//                let thumbnail = retrieveThumbnailWith(url: imageUrlStr)
+                let channel = ChannelModel(title: title, subscribers: subscribers, thumbnail: imageUrlStr)
                 items.append(channel)
             }
             return items
@@ -69,24 +69,5 @@ struct NetworkManager {
         }
     }
     
-    private func retrieveThumbnailWith(url: String) -> UIImage {
-        var thumbnail = UIImage()
-        if let url = URL(string: url) {
-            let session = URLSession.shared
-            let task = session.dataTask(with: url) { data, _, error in
-                if error == nil, data != nil {
-                    
-                }
-                guard let safeData = data else {
-                    fatalError("Fail to retrieve data for image with url: \(url)")
-                }
-                guard let image = UIImage(data: safeData) else {
-                    fatalError("Fail to retieve image")
-                }
-                thumbnail = image
-            }
-            task.resume()
-        }
-        return thumbnail
-    }
+    
 }
