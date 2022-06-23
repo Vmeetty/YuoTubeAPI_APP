@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol GalleryCollectionViewDelegate: AnyObject {
+    func didGalleryItemSelected(at indexPath: IndexPath)
+}
+
 class GalleryCollectionView: UICollectionView {
 
+    weak var galleryDelegate: GalleryCollectionViewDelegate?
+    
     var cells = [ChannelModel]()
     
     init() {
@@ -49,6 +55,14 @@ extension GalleryCollectionView: UICollectionViewDelegate, UICollectionViewDataS
         cell.setCell(channel: cells[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // pass model to the CardViewController
+        
+        // show
+        galleryDelegate?.didGalleryItemSelected(at: indexPath)
+        
     }
 }
 

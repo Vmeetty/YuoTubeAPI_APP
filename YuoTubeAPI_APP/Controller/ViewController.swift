@@ -17,13 +17,12 @@ class ViewController: UIViewController {
     let galleryCollectionView = GalleryCollectionView()
     let playlistCollectionView = PlaylistCollectionView()
     let secondPlaylistCollectionView = SecondPlaylistCollectionView()
-    var cardAnimationBrain = CardAnimationBrain.shared
+    var cardAnimationBrain = CardAnimationBrain()
     
     var networkManager = NetworkManager()
     
     var galleryCells = VideoModel.fetchVideo()
     
-//    var timer = GalleryTimer()
     var currentIndex = 0
     
     let titleLabel: UILabel = {
@@ -66,6 +65,8 @@ class ViewController: UIViewController {
         networkManager.delegate = self
         networkManager.fetchChannelListWith(channel: channelIDs, andAPIKey: K.Networking.API_KEY)
         
+        galleryCollectionView.galleryDelegate = self
+        
         pageControl.numberOfPages = galleryCells.count
         
         contentView.backgroundColor = K.Colors.backGroundColor
@@ -78,8 +79,7 @@ class ViewController: UIViewController {
         playlistCollectionView.set(cells: videos)
         secondPlaylistCollectionView.set(cells: videos)
         
-        
-        cardAnimationBrain.setupFakeHandleView(self)
+        cardAnimationBrain.configCardView(self)
         
     }
 
@@ -110,5 +110,10 @@ extension ViewController: NetworkManagerDelegate {
     }
 }
 
-
+extension ViewController: GalleryCollectionViewDelegate {
+    func didGalleryItemSelected(at indexPath: IndexPath) {
+        cardAnimationBrain.handleTap()
+        print("item selected at \(indexPath.row)")
+    }
+}
 

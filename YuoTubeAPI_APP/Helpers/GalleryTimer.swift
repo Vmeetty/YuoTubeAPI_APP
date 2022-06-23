@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 
 
+
+
+
+// DELLET THIS FILE
+
+/*
 protocol CanBeOn {
     func on(sender: ViewController)
 }
@@ -55,4 +61,4 @@ class TimerOff {
         timer.off(sender: sender)
     }
 }
-
+*/

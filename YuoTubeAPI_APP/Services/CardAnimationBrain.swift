@@ -15,12 +15,13 @@ class CardAnimationBrain {
         case collapsed
     }
     
-    static var shared = CardAnimationBrain()
-    
-    private var visualEffectView: UIVisualEffectView!
+//    static var shared = CardAnimationBrain()
     
     private var cardViewController: CardViewController!
     private var rootViewController: UIViewController!
+    
+    var tapRecognizer: UITapGestureRecognizer!
+    
     
     private let cardHeight: CGFloat = 650
     private let cardHandleAreaHeight: CGFloat = 65
@@ -36,76 +37,24 @@ class CardAnimationBrain {
     private var runningAnimations = [UIViewPropertyAnimator]()
     private var animationProgressWhenInterrupted: CGFloat = 0
     
-    private let fakeHandleView: UIView = {
-        let handleView = UIView()
-        handleView.backgroundColor = K.Colors.firstColor
-        handleView.clipsToBounds = true
-        return handleView
-    }()
     
-    let iconImageView: UIImageView = {
-        let iconImage = UIImage(named: "up-arrow")
-        let imageView = UIImageView()
-        imageView.contentMode = UIView.ContentMode.scaleAspectFit
-        imageView.image = iconImage
-        return imageView
-    }()
+    //MARK: - CardView init
     
-    
-    func setupFakeHandleView(_ sender: UIViewController) {
-        
+    func configCardView(_ sender: UIViewController) {
         rootViewController = sender
-        
-        fakeHandleView.frame = CGRect(x: 0, y: rootViewController.view.frame.height - cardHandleAreaHeight, width: rootViewController.view.bounds.width, height: cardHeight)
-        fakeHandleView.layer.cornerRadius = handleViewCornerRadius
-        rootViewController.view.addSubview(fakeHandleView)
-        
-        iconImageView.frame = CGRect(x: (Int(fakeHandleView.bounds.width) / 2) - Int(handleWidth / 2), y: 5, width: handleWidth, height: 30)
-        fakeHandleView.addSubview(iconImageView)
-
-        fakeGestureConfig()
-        configCardView()
-    }
- 
-    
-    //MARK: - Preparing for handling
-    @objc
-    func fakeHandleViewTapt(recognizer: UITapGestureRecognizer) {
-        setupCardView()
-        handleTap(recognizer: recognizer)
-    }
-    
-    @objc
-    func fakeHandleViewPan(recognizer: UIPanGestureRecognizer) {
-        handlePan(recognizer: recognizer)
-    }
-    
-    private func configCardView() {
-        visualEffectView = UIVisualEffectView()
-        visualEffectView.frame = rootViewController.view.frame
         
         cardViewController = CardViewController(nibName: "CardViewController", bundle: nil)
         cardViewController.view.frame = CGRect(x: 0, y: rootViewController.view.frame.height - cardHandleAreaHeight, width: rootViewController.view.bounds.width, height: cardHeight)
         cardViewController.view.layer.cornerRadius = handleViewCornerRadius
         cardViewController.view.clipsToBounds = true
         
+        rootViewController.addChild(cardViewController)
+        rootViewController.view.addSubview(cardViewController.view)
+        
         gradientConfig()
         cardGestureConfig()
     }
     
-    private func fakeGestureConfig() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fakeHandleViewTapt(recognizer:)))
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(fakeHandleViewPan(recognizer:)))
-        fakeHandleView.addGestureRecognizer(tapGestureRecognizer)
-        fakeHandleView.addGestureRecognizer(panGestureRecognizer)
-    }
-    
-    private func cardGestureConfig() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCardTap(recognizer:)))
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
-        cardViewController.handleArea.addGestureRecognizer(tapGestureRecognizer)
-        cardViewController.handleArea.addGestureRecognizer(panGestureRecognizer)
-    }
     
     private func gradientConfig() {
         let gradient = CAGradientLayer()
@@ -114,25 +63,16 @@ class CardAnimationBrain {
         cardViewController.containerView.layer.insertSublayer(gradient, at: 0)
     }
     
-    private func setupCardView() {
-        rootViewController.view.addSubview(visualEffectView)
-        rootViewController.addChild(cardViewController)
-        rootViewController.view.addSubview(cardViewController.view)
-    }
-    
-    private func removeCardController() {
-        if nextStep == .collapsed {
-            Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
-                self.visualEffectView.removeFromSuperview()
-                self.cardViewController.view.removeFromSuperview()
-                self.cardViewController.removeFromParent()
-            }
-        }
+    private func cardGestureConfig() {
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCardTap))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
+        cardViewController.handleArea.addGestureRecognizer(tapRecognizer)
+        cardViewController.handleArea.addGestureRecognizer(panGestureRecognizer)
     }
     
     @objc
-    func handleCardTap(recognizer: UITapGestureRecognizer) {
-        handleTap(recognizer: recognizer)
+    func handleCardTap() {
+        handleTap()
     }
     
     @objc
@@ -142,25 +82,19 @@ class CardAnimationBrain {
     
     
     //MARK: - Handling gestures
-    private func handleTap(recognizer: UITapGestureRecognizer) {
-        switch recognizer.state {
+    
+    func handleTap() {
+        switch tapRecognizer.state {
         case .ended:
             animateTransitionIfNeeded(state: nextStep, duration: 0.9)
-            removeCardController()
         default:
-            break
+            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
         }
     }
     
     private func handlePan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
-            switch nextStep {
-            case .expanded:
-                setupCardView()
-            default:
-                break
-            }
             startInteractiveTransition(state: nextStep, duration: 0.9)
         case .changed:
             let translation = recognizer.translation(in: cardViewController.handleArea)
@@ -194,18 +128,6 @@ class CardAnimationBrain {
             
             frameAnimator.startAnimation()
             runningAnimations.append(frameAnimator)
-            
-            let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
-                switch state {
-                case .expanded:
-                    self.visualEffectView.effect = UIBlurEffect(style: .dark)
-                case .collapsed:
-                    self.visualEffectView.effect = nil
-                }
-            }
-            
-            blurAnimator.startAnimation()
-            runningAnimations.append(blurAnimator)
         }
     }
     
@@ -229,7 +151,6 @@ class CardAnimationBrain {
         for animator in runningAnimations {
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
         }
-        removeCardController()
     }
 }
 
