@@ -30,6 +30,7 @@
 		CEFE6A112863110100E18DD3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A102863110100E18DD3 /* NetworkManager.swift */; };
 		CEFE6A132863241B00E18DD3 /* ChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A122863241B00E18DD3 /* ChannelData.swift */; };
 		CEFE6A152863566A00E18DD3 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A142863566A00E18DD3 /* ChannelModel.swift */; };
+		CEFE6A1F2864B2F100E18DD3 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		CEFE6A102863110100E18DD3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEFE6A122863241B00E18DD3 /* ChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelData.swift; sourceTree = "<group>"; };
 		CEFE6A142863566A00E18DD3 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
+		CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				CE00A40D285BE30400DAC418 /* Constants.swift */,
 				CE00A413285C03CE00DAC418 /* GalleryTimer.swift */,
 				CE00A4212860445300DAC418 /* Extensions.swift */,
+				CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				CEFE6A0C2860642F00E18DD3 /* GalleryCollectionView.swift in Sources */,
 				CE00A3F5285B319A00DAC418 /* ViewController.swift in Sources */,
 				CE00A414285C03CE00DAC418 /* GalleryTimer.swift in Sources */,
+				CEFE6A1F2864B2F100E18DD3 /* CacheManager.swift in Sources */,
 				CE00A420285E2CE600DAC418 /* CardAnimationBrain.swift in Sources */,
 				CE00A3F1285B319A00DAC418 /* AppDelegate.swift in Sources */,
 				CE00A40E285BE30400DAC418 /* Constants.swift in Sources */,

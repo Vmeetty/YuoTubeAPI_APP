@@ -71,6 +71,11 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         if let item = channelItem {
             titleLabel.text = item.title
             viewsLabel.text = item.subscribers + " subscribers"
+            guard channel.thumbnail != "" else { return }
+            if let cachedData = CacheManager.getImageCache(channel.thumbnail) {
+                mainImageView.image = UIImage(data: cachedData)
+                return
+            }
             retrieveThumbnailWith(url: item.thumbnail)
         }
     }
@@ -80,6 +85,10 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             let session = URLSession.shared
             let task = session.dataTask(with: url) { data, _, error in
                 if error == nil, data != nil {
+                    
+                    // Save the data in the cache
+                    CacheManager.setImageCache(url.absoluteString, data!)
+                    
                     if url.absoluteString != self.channelItem?.thumbnail {
                         return
                     }
