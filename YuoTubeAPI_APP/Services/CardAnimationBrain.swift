@@ -15,7 +15,7 @@ class CardAnimationBrain {
         case collapsed
     }
     
-    var channel: Displayable?
+    var videos: [VideoModel]?
     
     private var cardViewController: CardViewController!
     private var rootViewController: UIViewController!
@@ -84,16 +84,13 @@ class CardAnimationBrain {
     //MARK: - Handling gestures
     
     func handleTap() {
-        if channel != nil {
-            switch channel {
-            case is ChannelModel:
-                cardViewController.videoTitleLabel.text = channel?.titleLabelText
-            default:
-                break
-            }
+        if let videos = videos {
+            let videoItem = videos[0]
+            cardViewController.videoTitleLabel.text = videoItem.title
         }
         
         animateTransitionIfNeeded(state: nextStep, duration: 0.9)
+        
 //        switch tapRecognizer.state {
 //        case .ended:
 //            animateTransitionIfNeeded(state: nextStep, duration: 0.9)

@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     var networkManager = NetworkManager()
     
-    var galleryCells = VideoModel.fetchVideo()
+    var galleryCells = [ChannelModel]()
     
     var currentIndex = 0
     
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         networkManager.delegate = self
-        networkManager.fetchChannelListWith(channel: channelIDs, andAPIKey: K.Networking.API_KEY)
+        networkManager.fetchChannelListWith(channelIDs)
         
         galleryCollectionView.galleryDelegate = self
         
@@ -75,9 +75,9 @@ class ViewController: UIViewController {
         setupScrollView()
         setupUI()
         
-        let videos = VideoModel.fetchVideo()
-        playlistCollectionView.set(cells: videos)
-        secondPlaylistCollectionView.set(cells: videos)
+//        let videos = VideoModel.fetchVideo()
+//        playlistCollectionView.set(cells: videos)
+//        secondPlaylistCollectionView.set(cells: videos)
         
 //        cardAnimationBrain.configCardView(self)
         
@@ -95,26 +95,35 @@ class ViewController: UIViewController {
         pageControl.currentPage = currentIndex
     }
     
+    
 }
 
 extension ViewController: NetworkManagerDelegate {
+    
     func didFailWithError(error: Error) {
         print(error)
     }
-    func gotChannels(channels: [ChannelModel]) {
+    
+    func retrieveChannels(channels: [ChannelModel]) {
         DispatchQueue.main.async {
             self.galleryCollectionView.set(cells: channels)
+            self.galleryCells = channels
             self.galleryCollectionView.reloadData()
             Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.moveToTheNextIndex), userInfo: nil, repeats: true)
         }
     }
+    
+    func retrievePlaylist(videos: [VideoModel]) {
+        cardAnimationBrain.videos = videos
+        cardAnimationBrain.configCardView(self)
+        cardAnimationBrain.handleTap()
+    }
 }
 
 extension ViewController: GalleryCollectionViewDelegate {
+    
     func didGalleryItemSelected(_ channel: ChannelModel) {
-        cardAnimationBrain.channel = channel
-        cardAnimationBrain.configCardView(self)
-        cardAnimationBrain.handleTap()
+        networkManager.fetchPlaylistWith(channel.uploads)
     }
 }
 

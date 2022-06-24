@@ -12,14 +12,9 @@ struct ChannelModel {
     let title: String
     let subscribers: String
     let thumbnail: String
-    
-//    func retrieveChannel() -> ChannelModel {
-//        
-//    }
+    let uploads: String
 }
 
-    
-    
 extension ChannelModel: Displayable {
     var titleLabelText: String {
         title

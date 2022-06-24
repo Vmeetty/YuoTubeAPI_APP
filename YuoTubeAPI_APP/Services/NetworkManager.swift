@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 protocol NetworkManagerDelegate: AnyObject {
     func didFailWithError(error: Error)
-    func gotChannels(channels: [ChannelModel])
+    func retrieveChannels(channels: [ChannelModel])
+    func retrievePlaylist(videos: [VideoModel])
 }
 
 struct NetworkManager {
@@ -18,55 +20,66 @@ struct NetworkManager {
     weak var delegate: NetworkManagerDelegate?
     
     //MARK: - URL preparing
-    func fetchChannelListWith(channel ids: [String], andAPIKey key: String) {
-        var url = "\(K.Networking.BASIC_CHANNEL_URL)part=snippet%2CcontentDetails%2Cstatistics&key=\(K.Networking.API_KEY)&id="
-
+    func fetchChannelListWith(_ ids: [String]) {
+        let url = K.Networking.BASIC_CHANNEL_URL
+        var parameters: [String: String] = ["part": "snippet, contentDetails, statistics", "key": K.Networking.API_KEY, "id": ""]
         for (index, item) in ids.enumerated() {
-            url += item
+            parameters["id"]! += item
             if index < ids.count - 1 {
-                url += "%2C%20"
+                parameters["id"]! += ","
             }
         }
-        performChannelRequest(with: url)
+        channelRequestWith(url, and: parameters)
     }
     
-    
-    private func performChannelRequest(with urlStr: String) {
-        if let url = URL(string: urlStr) {
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { data, response, error in
-                if error != nil {
-                    delegate?.didFailWithError(error: error!)
+    //MARK: - Perform Request for the Channels
+    private func channelRequestWith(_ urlStr: String, and parameters: [String: String]) {
+        AF.request(urlStr, parameters: parameters)
+            .validate()
+            .responseDecodable(of: ChannelData.self) { response in
+                guard let channels = response.value else { return }
+                var items = [ChannelModel]()
+                for item in channels.items {
+                    let title = item.snippet.title
+                    let subscribers = item.statistics.subscriberCount
+                    let thumbnail = item.snippet.thumbnails.medium.url
+                    let uploads = item.contentDetails.relatedPlaylists.uploads
+                    
+                    let channel = ChannelModel(
+                        title: title,
+                        subscribers: subscribers,
+                        thumbnail: thumbnail,
+                        uploads: uploads
+                    )
+                    items.append(channel)
                 }
-                guard let safeData = data else {
-                    fatalError("Fail to get channel data")
-                }
-                if let channels = parseChannelJSON(safeData) {
-                    self.delegate?.gotChannels(channels: channels)
-                }
+                delegate?.retrieveChannels(channels: items)
             }
-            task.resume()
-        }
     }
     
-    private func parseChannelJSON(_ data: Data) -> [ChannelModel]? {
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode(ChannelData.self, from: data)
-            var items = [ChannelModel]()
-            for item in decodedData.items {
-                let title = item.snippet.title
-                let subscribers = item.statistics.subscriberCount
-                let imageUrlStr = item.snippet.thumbnails.medium.url
-//                let thumbnail = retrieveThumbnailWith(url: imageUrlStr)
-                let channel = ChannelModel(title: title, subscribers: subscribers, thumbnail: imageUrlStr)
-                items.append(channel)
+    //MARK: - Perform Request for uploads of the current channel
+    func fetchPlaylistWith(_ playlistID: String) {
+        let url = K.Networking.BASIC_PLAYLIST_URL
+        let parameters: [String: String] = ["part": "snippet", "maxResults": "10", "playlistId": playlistID, "key": K.Networking.API_KEY]
+        playlistRequestWith(url, and: parameters)
+    }
+    
+    private func playlistRequestWith(_ url: String, and parameters: [String: String]) {
+        AF.request(url, parameters: parameters)
+            .validate()
+            .responseDecodable(of: PlaylistData.self) { response in
+                guard let videos = response.value else { return }
+                var videoItems = [VideoModel]()
+                for item in videos.items {
+                    let title = item.snippet.title
+                    let imageURL = item.snippet.thumbnails.medium.url
+                    let videoID = item.snippet.resourceId.videoId
+                    
+                    let newVideo = VideoModel(title: title, imageURL: imageURL, videoID: videoID)
+                    videoItems.append(newVideo)
+                }
+                delegate?.retrievePlaylist(videos: videoItems)
             }
-            return items
-        } catch {
-            self.delegate?.didFailWithError(error: error)
-            return nil
-        }
     }
     
     

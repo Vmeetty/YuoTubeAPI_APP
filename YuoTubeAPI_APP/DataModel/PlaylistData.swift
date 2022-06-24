@@ -9,27 +9,17 @@ import Foundation
 
 //MARK: - Snippet
 struct PlaylistData: Codable {
-    let items: [PlaylistItems]
+    let items: [VideoData]
 }
 
-struct PlaylistItems: Codable {
-    let snippet: PlaylistSnippet
+struct VideoData: Codable {
+    let snippet: VideoSnippet
 }
 
-struct PlaylistSnippet: Codable {
+struct VideoSnippet: Codable {
     let title: String
     let thumbnails: Thumbnails
     let resourceId: ResourceId
-}
-
-
-//MARK: - Thumbnails
-struct Thumbnails: Codable {
-    let medium: Medium
-}
-
-struct Medium: Codable {
-    let url: String
 }
 
 

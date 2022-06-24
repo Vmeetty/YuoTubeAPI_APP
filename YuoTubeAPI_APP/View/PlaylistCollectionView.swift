@@ -41,14 +41,14 @@ class PlaylistCollectionView: UICollectionView {
 
 extension PlaylistCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cells.count
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: PlaylistCollectionViewCell.reuseID, for: indexPath) as! PlaylistCollectionViewCell
-        cell.mainImageView.image = cells[indexPath.row].image
-        cell.titleLabel.text = cells[indexPath.row].title
-        cell.viewsLabel.text = cells[indexPath.row].views
+        cell.mainImageView.image = UIImage(named: "buzz") // cells[indexPath.row].image
+        cell.titleLabel.text = "Buzz" // cells[indexPath.row].title
+        cell.viewsLabel.text = "4000 views" // cells[indexPath.row].views
         
         return cell
     }

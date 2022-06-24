@@ -25,6 +25,14 @@ struct ChannelSnippet: Codable {
     let thumbnails: Thumbnails
 }
 
+//MARK: - Thumbnails
+struct Thumbnails: Codable {
+    let medium: Medium
+}
+
+struct Medium: Codable {
+    let url: String
+}
 
 //MARK: - ContentDetails
 struct ContentDetails: Codable {
