@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         playlistCollectionView.set(cells: videos)
         secondPlaylistCollectionView.set(cells: videos)
         
-        cardAnimationBrain.configCardView(self)
+//        cardAnimationBrain.configCardView(self)
         
     }
 
@@ -111,9 +111,10 @@ extension ViewController: NetworkManagerDelegate {
 }
 
 extension ViewController: GalleryCollectionViewDelegate {
-    func didGalleryItemSelected(at indexPath: IndexPath) {
+    func didGalleryItemSelected(_ channel: ChannelModel) {
+        cardAnimationBrain.channel = channel
+        cardAnimationBrain.configCardView(self)
         cardAnimationBrain.handleTap()
-        print("item selected at \(indexPath.row)")
     }
 }
 

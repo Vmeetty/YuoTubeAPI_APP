@@ -16,6 +16,10 @@ class CardViewController: UIViewController {
     @IBOutlet weak var previosButton: UIButton!
     @IBOutlet weak var handleIcon: UIImageView!
     
+    @IBOutlet weak var videoTitleLabel: UILabel!
+    
+    var data: Displayable?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +30,8 @@ class CardViewController: UIViewController {
         playButton.setTitle("", for: .normal)
         nextButton.setTitle("", for: .normal)
         previosButton.setTitle("", for: .normal)
+        
+        
     }
 
 }

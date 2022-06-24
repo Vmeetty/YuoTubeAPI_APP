@@ -17,3 +17,11 @@ struct ChannelModel {
 //        
 //    }
 }
+
+    
+    
+extension ChannelModel: Displayable {
+    var titleLabelText: String {
+        title
+    }
+}

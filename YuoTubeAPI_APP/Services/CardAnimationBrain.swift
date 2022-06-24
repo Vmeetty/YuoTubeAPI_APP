@@ -15,7 +15,7 @@ class CardAnimationBrain {
         case collapsed
     }
     
-//    static var shared = CardAnimationBrain()
+    var channel: Displayable?
     
     private var cardViewController: CardViewController!
     private var rootViewController: UIViewController!
@@ -84,12 +84,22 @@ class CardAnimationBrain {
     //MARK: - Handling gestures
     
     func handleTap() {
-        switch tapRecognizer.state {
-        case .ended:
-            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
-        default:
-            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
+        if channel != nil {
+            switch channel {
+            case is ChannelModel:
+                cardViewController.videoTitleLabel.text = channel?.titleLabelText
+            default:
+                break
+            }
         }
+        
+        animateTransitionIfNeeded(state: nextStep, duration: 0.9)
+//        switch tapRecognizer.state {
+//        case .ended:
+//            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
+//        default:
+//            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
+//        }
     }
     
     private func handlePan(recognizer: UIPanGestureRecognizer) {
