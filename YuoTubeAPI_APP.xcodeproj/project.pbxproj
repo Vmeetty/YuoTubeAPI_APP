@@ -33,7 +33,6 @@
 		CEFE6A1F2864B2F100E18DD3 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */; };
 		CEFE6A2428652E1C00E18DD3 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2328652E1C00E18DD3 /* Displayable.swift */; };
 		CEFE6A2A28655B4600E18DD3 /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2928655B4600E18DD3 /* PlaylistModel.swift */; };
-		CEFE6A2C28673D1000E18DD3 /* PlaylistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2B28673D1000E18DD3 /* PlaylistManager.swift */; };
 		E56DE98E98FD266826CDD129 /* Pods_YuoTubeAPI_APP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C914F245931CDACD423FA011 /* Pods_YuoTubeAPI_APP.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 		CEFE6A2328652E1C00E18DD3 /* Displayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displayable.swift; sourceTree = "<group>"; };
 		CEFE6A2528653C8B00E18DD3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFE6A2928655B4600E18DD3 /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
-		CEFE6A2B28673D1000E18DD3 /* PlaylistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistManager.swift; sourceTree = "<group>"; };
 		DCAA8F0558C80C40E0B43A52 /* Pods-YuoTubeAPI_APP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuoTubeAPI_APP.release.xcconfig"; path = "Target Support Files/Pods-YuoTubeAPI_APP/Pods-YuoTubeAPI_APP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +125,6 @@
 				CE00A3F0285B319A00DAC418 /* AppDelegate.swift */,
 				CE00A3F2285B319A00DAC418 /* SceneDelegate.swift */,
 				CEFE6A2328652E1C00E18DD3 /* Displayable.swift */,
-				CEFE6A2B28673D1000E18DD3 /* PlaylistManager.swift */,
 				CE00A4232860452700DAC418 /* Helpers */,
 				CE00A424286045F400DAC418 /* Services */,
 				CE00A408285BAEAC00DAC418 /* Model */,
@@ -320,7 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEFE6A2C28673D1000E18DD3 /* PlaylistManager.swift in Sources */,
 				CE00A418285CAA2700DAC418 /* SecondPlaylistCollectionView.swift in Sources */,
 				CE00A410285BECB200DAC418 /* PlaylistCollectionView.swift in Sources */,
 				CE00A412285BECC800DAC418 /* PlaylistCollectionViewCell.swift in Sources */,

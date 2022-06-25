@@ -10,7 +10,6 @@ import UIKit
 class SecondPlaylistCollectionView: UICollectionView {
 
     var cells = [VideoModel]()
-    var playlistManager = PlaylistManager()
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -20,8 +19,6 @@ class SecondPlaylistCollectionView: UICollectionView {
         backgroundColor = K.Colors.backGroundColor
         delegate = self
         dataSource = self
-        playlistManager.delegate = self
-        playlistManager.fetchPlaylistWith("OLAK5uy_mv965QiJkVkjx0ylLtaHAGCbIOC1ZQugI")
         
         register(SecondPlaylistCollectionViewCell.self, forCellWithReuseIdentifier: SecondPlaylistCollectionViewCell.reuseID)
         translatesAutoresizingMaskIntoConstraints = false
@@ -63,19 +60,5 @@ extension SecondPlaylistCollectionView: UICollectionViewDelegateFlowLayout {
 }
 
 
-extension SecondPlaylistCollectionView: PlaylistManagerDelegate {
-    func didFailWithError(error: Error) {
-        print("Fail fetching playlist with: \(error)")
-    }
-    
-    func retrievePlaylist(videos: [VideoModel]) {
-        DispatchQueue.main.async {
-            self.cells = videos
-            self.reloadData()
-        }
-    }
-    
-    
-}
 
 

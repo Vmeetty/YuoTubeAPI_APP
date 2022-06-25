@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         
         networkManager.delegate = self
         networkManager.fetchChannelListWith(channelIDs)
-        
+        networkManager.fetchPlaylistWith("OLAK5uy_mv965QiJkVkjx0ylLtaHAGCbIOC1ZQugI", isUploads: false)
         
         galleryCollectionView.galleryDelegate = self
         
@@ -114,18 +114,22 @@ extension ViewController: NetworkManagerDelegate {
         }
     }
     
-    
     func retrieveUploads(videos: [VideoModel]) {
         cardAnimationBrain.videos = videos
         cardAnimationBrain.configCardView(self)
         cardAnimationBrain.handleTap()
+    }
+    
+    func retrievePlaylist(videos: [VideoModel]) {
+        secondPlaylistCollectionView.set(cells: videos)
+        secondPlaylistCollectionView.reloadData()
     }
 }
 
 extension ViewController: GalleryCollectionViewDelegate {
 
     func didGalleryItemSelected(_ channel: ChannelModel) {
-        networkManager.fetchPlaylistWith(channel.uploads)
+        networkManager.fetchPlaylistWith(channel.uploads, isUploads: true)
     }
     
 }

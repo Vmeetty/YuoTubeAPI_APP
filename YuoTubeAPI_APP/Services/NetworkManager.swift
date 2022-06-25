@@ -13,6 +13,7 @@ protocol NetworkManagerDelegate: AnyObject {
     func didFailWithError(error: Error)
     func retrieveChannels(channels: [ChannelModel])
     func retrieveUploads(videos: [VideoModel])
+    func retrievePlaylist(videos: [VideoModel])
 }
 
 struct NetworkManager {
@@ -58,14 +59,14 @@ struct NetworkManager {
     }
     
     //MARK: - Perform Request for uploads of the current channel
-    func fetchPlaylistWith(_ playlistID: String) {
+    func fetchPlaylistWith(_ playlistID: String, isUploads: Bool) {
         let url = K.Networking.BASIC_PLAYLIST_URL
         let parameters: [String: String] = ["part": "snippet", "maxResults": "10", "playlistId": playlistID, "key": K.Networking.API_KEY]
-        playlistRequestWith(url, and: parameters)
+        playlistRequestWith(url, and: parameters, isUploads: isUploads)
     }
     
     
-    private func playlistRequestWith(_ url: String, and parameters: [String: String]) {
+    private func playlistRequestWith(_ url: String, and parameters: [String: String], isUploads: Bool) {
         var videoItems = [VideoModel]()
         AF.request(url, parameters: parameters)
             .validate()
@@ -79,28 +80,11 @@ struct NetworkManager {
                     let newVideo = VideoModel(title: title, imageURL: imageURL, videoID: videoID)
                     videoItems.append(newVideo)
                 }
-                delegate?.retrieveUploads(videos: videoItems)
-            }
-    }
-    
-    static func playlistRequestWith(_ playlistID: String, complition: @escaping ([VideoModel]) -> Void) {
-        let url = K.Networking.BASIC_PLAYLIST_URL
-        let parameters: [String: String] = ["part": "snippet", "maxResults": "10", "playlistId": playlistID, "key": K.Networking.API_KEY]
-        
-        var videoItems = [VideoModel]()
-        AF.request(url, parameters: parameters)
-            .validate()
-            .responseDecodable(of: PlaylistData.self) { response in
-                guard let videos = response.value else { return }
-                for item in videos.items {
-                    let title = item.snippet.title
-                    let imageURL = item.snippet.thumbnails.medium.url
-                    let videoID = item.snippet.resourceId.videoId
-                    
-                    let newVideo = VideoModel(title: title, imageURL: imageURL, videoID: videoID)
-                    videoItems.append(newVideo)
+                if isUploads {
+                    delegate?.retrieveUploads(videos: videoItems)
+                } else {
+                    delegate?.retrievePlaylist(videos: videoItems)
                 }
-                complition(videoItems)
             }
     }
     
@@ -123,9 +107,5 @@ struct NetworkManager {
             task.resume()
         }
     }
-    
-    
-    
-
     
 }
