@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CardViewController: UIViewController {
 
@@ -17,6 +18,10 @@ class CardViewController: UIViewController {
     @IBOutlet weak var handleIcon: UIImageView!
     
     @IBOutlet weak var videoTitleLabel: UILabel!
+    @IBOutlet weak var videoView: UIView!
+    
+    var player: AVPlayer!
+    var playerLayer: AVPlayerLayer!
     
     var data: Displayable?
     
@@ -24,6 +29,25 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
 
         configUI()
+        
+        
+        let url = URL(string: "https://argon.stream.voidboost.in/movies/e96d1884c52c6c5744af956b7a8110fdf1ccd93d/a4f5462f261e43c8963cb2356497982f:2022062505:f20d99fc-1483-4785-b7e6-f7e2011773e0/240.mp4:hls:manifest.m3u8")!
+        player = AVPlayer(url: url)
+        
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resize
+        
+        videoView.layer.addSublayer(playerLayer)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        player.play()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer.frame = videoView.bounds
     }
     
     func configUI() {
@@ -33,5 +57,7 @@ class CardViewController: UIViewController {
         
         
     }
+    
+    
 
 }

@@ -36,6 +36,7 @@ class SecondPlaylistCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    var item: VideoModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,6 +63,27 @@ class SecondPlaylistCollectionViewCell: UICollectionViewCell {
         viewsLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         viewsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
         
+    }
+    
+    func setCell(video: VideoModel) {
+        item = video
+        if let item = item {
+            titleLabel.text = item.title
+            viewsLabel.text = item.videoID
+            guard item.imageURL != "" else { return }
+            if let cachedData = CacheManager.getImageCache(item.imageURL) {
+                mainImageView.image = UIImage(data: cachedData)
+                return
+            }
+            NetworkManager.retrieveThumbnailWith(url: item.imageURL) { [weak self] image, url in
+                if url.absoluteString != self?.item?.imageURL {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.mainImageView.image = image
+                }
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

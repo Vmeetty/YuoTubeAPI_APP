@@ -19,6 +19,7 @@
                 <outlet property="playButton" destination="U33-wm-gDc" id="R6d-Nn-ym1"/>
                 <outlet property="previosButton" destination="5g2-s5-Va2" id="Q2a-Zd-Wab"/>
                 <outlet property="videoTitleLabel" destination="F4c-ty-aSp" id="yI1-tN-3Y8"/>
+                <outlet property="videoView" destination="Dqq-e7-66I" id="RTc-d2-WsZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

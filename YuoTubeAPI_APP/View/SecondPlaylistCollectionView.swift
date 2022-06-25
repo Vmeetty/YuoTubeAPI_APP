@@ -10,6 +10,7 @@ import UIKit
 class SecondPlaylistCollectionView: UICollectionView {
 
     var cells = [VideoModel]()
+    var playlistManager = PlaylistManager()
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -19,6 +20,9 @@ class SecondPlaylistCollectionView: UICollectionView {
         backgroundColor = K.Colors.backGroundColor
         delegate = self
         dataSource = self
+        playlistManager.delegate = self
+        playlistManager.fetchPlaylistWith("OLAK5uy_mv965QiJkVkjx0ylLtaHAGCbIOC1ZQugI")
+        
         register(SecondPlaylistCollectionViewCell.self, forCellWithReuseIdentifier: SecondPlaylistCollectionViewCell.reuseID)
         translatesAutoresizingMaskIntoConstraints = false
         layout.minimumLineSpacing = K.playlistMinimumLineSpacing
@@ -40,14 +44,13 @@ class SecondPlaylistCollectionView: UICollectionView {
 
 extension SecondPlaylistCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: SecondPlaylistCollectionViewCell.reuseID, for: indexPath) as! SecondPlaylistCollectionViewCell
-        cell.mainImageView.image = UIImage(named: "luka") // cells[indexPath.row].image
-        cell.titleLabel.text = "Luka" // cells[indexPath.row].title
-        cell.viewsLabel.text = "12000 views" // cells[indexPath.row].views
+       
+        cell.setCell(video: cells[indexPath.row])
         
         return cell
     }
@@ -58,3 +61,21 @@ extension SecondPlaylistCollectionView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: K.itemWidth, height: frame.height)
     }
 }
+
+
+extension SecondPlaylistCollectionView: PlaylistManagerDelegate {
+    func didFailWithError(error: Error) {
+        print("Fail fetching playlist with: \(error)")
+    }
+    
+    func retrievePlaylist(videos: [VideoModel]) {
+        DispatchQueue.main.async {
+            self.cells = videos
+            self.reloadData()
+        }
+    }
+    
+    
+}
+
+

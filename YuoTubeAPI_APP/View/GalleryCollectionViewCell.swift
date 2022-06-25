@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class GalleryCollectionViewCell: UICollectionViewCell {
     
@@ -76,33 +77,18 @@ class GalleryCollectionViewCell: UICollectionViewCell {
                 mainImageView.image = UIImage(data: cachedData)
                 return
             }
-            retrieveThumbnailWith(url: item.thumbnail)
+            NetworkManager.retrieveThumbnailWith(url: item.thumbnail) { [weak self] image, url in
+                if url.absoluteString != self?.channelItem?.thumbnail {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.mainImageView.image = image
+                }
+            }
         }
     }
     
-    private func retrieveThumbnailWith(url: String) {
-        if let url = URL(string: url) {
-            let session = URLSession.shared
-            let task = session.dataTask(with: url) { data, _, error in
-                if error == nil, data != nil {
-                    
-                    // Save the data in the cache
-                    CacheManager.setImageCache(url.absoluteString, data!)
-                    
-                    if url.absoluteString != self.channelItem?.thumbnail {
-                        return
-                    }
-                    guard let image = UIImage(data: data!) else {
-                        fatalError("Fail to retieve image")
-                    }
-                    DispatchQueue.main.async {
-                        self.mainImageView.image = image
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -65,6 +65,7 @@ class ViewController: UIViewController {
         networkManager.delegate = self
         networkManager.fetchChannelListWith(channelIDs)
         
+        
         galleryCollectionView.galleryDelegate = self
         
         pageControl.numberOfPages = galleryCells.count
@@ -72,12 +73,12 @@ class ViewController: UIViewController {
         contentView.backgroundColor = K.Colors.backGroundColor
         scrollView.backgroundColor = K.Colors.backGroundColor
         
-        setupScrollView()
-        setupUI()
+        setupScrollView() // extension file
+        setupUI() // extension file
         
 //        let videos = VideoModel.fetchVideo()
-//        playlistCollectionView.set(cells: videos)
-//        secondPlaylistCollectionView.set(cells: videos)
+        
+        
         
 //        cardAnimationBrain.configCardView(self)
         
@@ -113,17 +114,23 @@ extension ViewController: NetworkManagerDelegate {
         }
     }
     
-    func retrievePlaylist(videos: [VideoModel]) {
+    func retrieveUploads(videos: [VideoModel]) {
         cardAnimationBrain.videos = videos
         cardAnimationBrain.configCardView(self)
         cardAnimationBrain.handleTap()
     }
+    
+    func retrievePlaylist(videos: [VideoModel]) {
+        secondPlaylistCollectionView.set(cells: videos)
+        secondPlaylistCollectionView.reloadData()
+    }
 }
 
 extension ViewController: GalleryCollectionViewDelegate {
-    
+
     func didGalleryItemSelected(_ channel: ChannelModel) {
-        networkManager.fetchPlaylistWith(channel.uploads)
+        networkManager.fetchPlaylistWith(channel.uploads, isUploads: true)
     }
+    
 }
 
