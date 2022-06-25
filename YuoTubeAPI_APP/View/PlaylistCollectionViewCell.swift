@@ -68,8 +68,10 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     func setCell(video: VideoModel) {
         item = video
         if let item = item {
+            NetworkManager.fetchVideoStatisticsWith(id: item.videoID) { viewCount in
+                self.viewsLabel.text = viewCount
+            }
             titleLabel.text = item.title
-            viewsLabel.text = item.videoID
             guard item.imageURL != "" else { return }
             if let cachedData = CacheManager.getImageCache(item.imageURL) {
                 mainImageView.image = UIImage(data: cachedData)

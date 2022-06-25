@@ -94,6 +94,18 @@ struct NetworkManager {
             }
     }
     
+    static func fetchVideoStatisticsWith(id: String, complition: @escaping (String) -> Void) {
+        let url = K.Networking.BASIC_VIDEO_URL
+        let parameters = ["part": "statistics", "id": id, "key": K.Networking.API_KEY]
+        AF.request(url, parameters: parameters)
+            .validate()
+            .responseDecodable(of: SinglVideoData.self) { response in
+                guard let videos = response.value else { return }
+                let viewCount = videos.items[0].statistics.viewCount
+                complition(viewCount)
+            }
+    }
+    
     
     static func retrieveThumbnailWith(url: String, complition: @escaping (UIImage, URL) -> Void){
         if let url = URL(string: url) {
