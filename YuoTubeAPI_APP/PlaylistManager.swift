@@ -19,28 +19,10 @@ struct PlaylistManager {
     
     //MARK: - Perform Request for uploads of the current channel
     func fetchPlaylistWith(_ playlistID: String) {
-        let url = K.Networking.BASIC_PLAYLIST_URL
-        let parameters: [String: String] = ["part": "snippet", "maxResults": "10", "playlistId": playlistID, "key": K.Networking.API_KEY]
-        playlistRequestWith(url, and: parameters)
+        NetworkManager.playlistRequestWith(playlistID) { videoItems in
+            delegate?.retrievePlaylist(videos: videoItems)
+        }
     }
     
-    
-    private func playlistRequestWith(_ url: String, and parameters: [String: String]) {
-        var videoItems = [VideoModel]()
-        AF.request(url, parameters: parameters)
-            .validate()
-            .responseDecodable(of: PlaylistData.self) { response in
-                guard let videos = response.value else { return }
-                for item in videos.items {
-                    let title = item.snippet.title
-                    let imageURL = item.snippet.thumbnails.medium.url
-                    let videoID = item.snippet.resourceId.videoId
-                    
-                    let newVideo = VideoModel(title: title, imageURL: imageURL, videoID: videoID)
-                    videoItems.append(newVideo)
-                }
-                delegate?.retrievePlaylist(videos: videoItems)
-            }
-    }
 }
 

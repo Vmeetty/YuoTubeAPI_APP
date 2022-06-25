@@ -114,22 +114,18 @@ extension ViewController: NetworkManagerDelegate {
         }
     }
     
+    
     func retrieveUploads(videos: [VideoModel]) {
         cardAnimationBrain.videos = videos
         cardAnimationBrain.configCardView(self)
         cardAnimationBrain.handleTap()
-    }
-    
-    func retrievePlaylist(videos: [VideoModel]) {
-        secondPlaylistCollectionView.set(cells: videos)
-        secondPlaylistCollectionView.reloadData()
     }
 }
 
 extension ViewController: GalleryCollectionViewDelegate {
 
     func didGalleryItemSelected(_ channel: ChannelModel) {
-        networkManager.fetchPlaylistWith(channel.uploads, isUploads: true)
+        networkManager.fetchPlaylistWith(channel.uploads)
     }
     
 }
