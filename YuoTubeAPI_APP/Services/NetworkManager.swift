@@ -14,6 +14,7 @@ protocol NetworkManagerDelegate: AnyObject {
     func retrieveChannels(channels: [ChannelModel])
     func retrieveUploads(videos: [VideoModel])
     func retrievePlaylist(videos: [VideoModel])
+    func retrieveSecondPlaylist(videos: [VideoModel])
 }
 
 struct NetworkManager {
@@ -59,14 +60,14 @@ struct NetworkManager {
     }
     
     //MARK: - Perform Request for uploads of the current channel
-    func fetchPlaylistWith(_ playlistID: String, isUploads: Bool) {
+    func fetchPlaylistWith(_ playlistID: String, for target: UICollectionView) {
         let url = K.Networking.BASIC_PLAYLIST_URL
         let parameters: [String: String] = ["part": "snippet", "maxResults": "10", "playlistId": playlistID, "key": K.Networking.API_KEY]
-        playlistRequestWith(url, and: parameters, isUploads: isUploads)
+        playlistRequestWith(url, and: parameters, target: target)
     }
     
     
-    private func playlistRequestWith(_ url: String, and parameters: [String: String], isUploads: Bool) {
+    private func playlistRequestWith(_ url: String, and parameters: [String: String], target: UICollectionView) {
         var videoItems = [VideoModel]()
         AF.request(url, parameters: parameters)
             .validate()
@@ -76,14 +77,19 @@ struct NetworkManager {
                     let title = item.snippet.title
                     let imageURL = item.snippet.thumbnails.medium.url
                     let videoID = item.snippet.resourceId.videoId
-                    
+
                     let newVideo = VideoModel(title: title, imageURL: imageURL, videoID: videoID)
                     videoItems.append(newVideo)
                 }
-                if isUploads {
+                
+                switch target {
+                case is GalleryCollectionView:
                     delegate?.retrieveUploads(videos: videoItems)
-                } else {
+                case is PlaylistCollectionView:
                     delegate?.retrievePlaylist(videos: videoItems)
+                case is SecondPlaylistCollectionView:
+                    delegate?.retrieveSecondPlaylist(videos: videoItems)
+                default: break
                 }
             }
     }

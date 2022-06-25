@@ -58,13 +58,15 @@ class ViewController: UIViewController {
         K.Networking.THIRD_CHANNEL_ID,
         K.Networking.FORTH_CHANNEL_ID
     ]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         networkManager.delegate = self
         networkManager.fetchChannelListWith(channelIDs)
-        networkManager.fetchPlaylistWith("OLAK5uy_mv965QiJkVkjx0ylLtaHAGCbIOC1ZQugI", isUploads: false)
+        networkManager.fetchPlaylistWith("OLAK5uy_mv965QiJkVkjx0ylLtaHAGCbIOC1ZQugI", for: playlistCollectionView)
+        networkManager.fetchPlaylistWith("OLAK5uy_mc9GouYBjEMnOuI877I12lk0OOAlrh0CQ", for: secondPlaylistCollectionView)
         
         galleryCollectionView.galleryDelegate = self
         
@@ -75,10 +77,6 @@ class ViewController: UIViewController {
         
         setupScrollView() // extension file
         setupUI() // extension file
-        
-//        let videos = VideoModel.fetchVideo()
-        
-        
         
 //        cardAnimationBrain.configCardView(self)
         
@@ -121,6 +119,11 @@ extension ViewController: NetworkManagerDelegate {
     }
     
     func retrievePlaylist(videos: [VideoModel]) {
+        playlistCollectionView.set(cells: videos)
+        playlistCollectionView.reloadData()
+    }
+    
+    func retrieveSecondPlaylist(videos: [VideoModel]) {
         secondPlaylistCollectionView.set(cells: videos)
         secondPlaylistCollectionView.reloadData()
     }
@@ -129,7 +132,7 @@ extension ViewController: NetworkManagerDelegate {
 extension ViewController: GalleryCollectionViewDelegate {
 
     func didGalleryItemSelected(_ channel: ChannelModel) {
-        networkManager.fetchPlaylistWith(channel.uploads, isUploads: true)
+        networkManager.fetchPlaylistWith(channel.uploads, for: galleryCollectionView)
     }
     
 }
