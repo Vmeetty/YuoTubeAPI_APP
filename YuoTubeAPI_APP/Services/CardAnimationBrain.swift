@@ -41,6 +41,10 @@ class CardAnimationBrain {
     //MARK: - CardView init
     
     func configCardView(_ sender: UIViewController) {
+        if cardViewController != nil {
+            cardViewController.view.removeFromSuperview()
+            cardViewController.removeFromParent()
+        }
         rootViewController = sender
         
         cardViewController = CardViewController(nibName: "CardViewController", bundle: nil)

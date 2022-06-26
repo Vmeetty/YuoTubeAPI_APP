@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol SecondPlaylistCollectionViewDelegate: AnyObject {
+    func did2ndPlaylistItemSelected(_ videos: [VideoModel], at index: Int)
+}
+
 class SecondPlaylistCollectionView: UICollectionView {
 
+    weak var playListDelegate: SecondPlaylistCollectionViewDelegate?
+    
     var cells = [VideoModel]()
     
     init() {
@@ -50,6 +56,10 @@ extension SecondPlaylistCollectionView: UICollectionViewDelegate, UICollectionVi
         cell.setCell(video: cells[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        playListDelegate?.did2ndPlaylistItemSelected(cells, at: indexPath.row)
     }
 }
 

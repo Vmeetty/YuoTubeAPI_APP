@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PlaylistCollectionViewDelegate: AnyObject {
-    func didPlaylistItemSelected(_ video: VideoModel)
+    func didPlaylistItemSelected(_ videos: [VideoModel], at index: Int)
 }
 
 class PlaylistCollectionView: UICollectionView {
@@ -59,7 +59,7 @@ extension PlaylistCollectionView: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        playListDelegate?.didPlaylistItemSelected(cells[indexPath.row])
+        playListDelegate?.didPlaylistItemSelected(cells, at: indexPath.row)
     }
 }
 

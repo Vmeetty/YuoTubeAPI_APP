@@ -70,6 +70,8 @@ class ViewController: UIViewController {
         networkManager.fetchPlaylistWith("OLAK5uy_mc9GouYBjEMnOuI877I12lk0OOAlrh0CQ", for: secondPlaylistCollectionView)
         
         galleryCollectionView.galleryDelegate = self
+        playlistCollectionView.playListDelegate = self
+        secondPlaylistCollectionView.playListDelegate = self
         
         pageControl.numberOfPages = galleryCells.count
         
@@ -139,8 +141,20 @@ extension ViewController: GalleryCollectionViewDelegate {
 }
 
 extension ViewController: PlaylistCollectionViewDelegate {
-    func didPlaylistItemSelected(_ video: VideoModel) {
-//        networkManager.fetchPlaylistWith(video., for: <#T##UICollectionView#>)
+    func didPlaylistItemSelected(_ videos: [VideoModel], at index: Int) {
+        cardAnimationBrain.videos = videos
+        cardAnimationBrain.configCardView(self)
+        cardAnimationBrain.setVideoToCardVC(videos: videos, at: index)
     }
+}
+
+extension ViewController: SecondPlaylistCollectionViewDelegate {
+    func did2ndPlaylistItemSelected(_ videos: [VideoModel], at index: Int) {
+        cardAnimationBrain.videos = videos
+        cardAnimationBrain.configCardView(self)
+        cardAnimationBrain.setVideoToCardVC(videos: videos, at: index)
+    }
+    
+    
 }
 

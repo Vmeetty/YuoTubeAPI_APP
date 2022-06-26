@@ -24,7 +24,6 @@ class CardViewController: UIViewController {
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     
-//    var videoData: Displayable?
     var videoData: [VideoModel]?
     
     override func viewDidLoad() {
@@ -63,7 +62,8 @@ class CardViewController: UIViewController {
         
         let videoItem = videoData[index]
         videoTitleLabel.text = videoItem.title
-//        viewCountLabel.text = videoItem.
+        viewCountLabel.text = ViewCountFormatter.shared.formatViewCount(viewCount: videoItem.viewCont) + " просмотров"
+        
     }
 
 }
