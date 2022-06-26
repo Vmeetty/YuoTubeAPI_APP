@@ -12,9 +12,7 @@ import Alamofire
 protocol NetworkManagerDelegate: AnyObject {
     func didFailWithError(error: Error)
     func retrieveChannels(channels: [ChannelModel])
-    func retrieveUploads(videos: [VideoModel])
-    func retrievePlaylist(videos: [VideoModel])
-    func retrieveSecondPlaylist(videos: [VideoModel])
+    func retrievePlaylist(videos: [VideoModel], target: Any)
 }
 
 struct NetworkManager {
@@ -60,14 +58,14 @@ struct NetworkManager {
     }
     
     //MARK: - Perform Request for uploads of the current channel
-    func fetchPlaylistWith(_ playlistID: String, for target: UICollectionView) {
+    func fetchPlaylistWith(_ playlistID: String, for target: Any) {
         let url = K.Networking.BASIC_PLAYLIST_URL
         let parameters: [String: String] = ["part": "snippet", "maxResults": "10", "playlistId": playlistID, "key": K.Networking.API_KEY]
         playlistRequestWith(url, and: parameters, target: target)
     }
     
     
-    private func playlistRequestWith(_ url: String, and parameters: [String: String], target: UICollectionView) {
+    private func playlistRequestWith(_ url: String, and parameters: [String: String], target: Any) {
         var videoItems = [VideoModel]()
         AF.request(url, parameters: parameters)
             .validate()
@@ -82,15 +80,7 @@ struct NetworkManager {
                     videoItems.append(newVideo)
                 }
                 
-                switch target {
-                case is GalleryCollectionView:
-                    delegate?.retrieveUploads(videos: videoItems)
-                case is PlaylistCollectionView:
-                    delegate?.retrievePlaylist(videos: videoItems)
-                case is SecondPlaylistCollectionView:
-                    delegate?.retrieveSecondPlaylist(videos: videoItems)
-                default: break
-                }
+                delegate?.retrievePlaylist(videos: videoItems, target: target)
             }
     }
     

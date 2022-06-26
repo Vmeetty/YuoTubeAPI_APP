@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GalleryCollectionViewDelegate: AnyObject {
-    func didGalleryItemSelected(_ channel: ChannelModel)
+    func didGalleryItemSelected(_ channel: ChannelModel, at index: Int)
 }
 
 class GalleryCollectionView: UICollectionView {
@@ -61,7 +61,7 @@ extension GalleryCollectionView: UICollectionViewDelegate, UICollectionViewDataS
         // pass model to the CardViewController
         
         // show
-        galleryDelegate?.didGalleryItemSelected(cells[indexPath.row])
+        galleryDelegate?.didGalleryItemSelected(cells[indexPath.row], at: 0)
         
     }
 }

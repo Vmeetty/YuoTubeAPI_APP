@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol PlaylistCollectionViewDelegate: AnyObject {
+    func didPlaylistItemSelected(_ video: VideoModel)
+}
+
 class PlaylistCollectionView: UICollectionView {
 
     var cells = [VideoModel]()
+    
+    weak var playListDelegate: PlaylistCollectionViewDelegate?
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -50,6 +56,10 @@ extension PlaylistCollectionView: UICollectionViewDelegate, UICollectionViewData
         cell.setCell(video: cells[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        playListDelegate?.didPlaylistItemSelected(cells[indexPath.row])
     }
 }
 

@@ -17,7 +17,7 @@ class CardAnimationBrain {
     
     var videos: [VideoModel]?
     
-    private var cardViewController: CardViewController!
+    var cardViewController: CardViewController!
     private var rootViewController: UIViewController!
     
     var tapRecognizer: UITapGestureRecognizer!
@@ -81,14 +81,15 @@ class CardAnimationBrain {
     }
     
     
+    //MARK: - Set the video model data to cardViewcontroller and updateUI
+    func setVideoToCardVC(videos: [VideoModel], at index: Int) {
+        cardViewController.updateUI(videos: videos, at: index)
+        handleTap()
+    }
+    
     //MARK: - Handling gestures
     
     func handleTap() {
-        if let videos = videos {
-            let videoItem = videos[0]
-            cardViewController.videoTitleLabel.text = videoItem.title
-        }
-        
         animateTransitionIfNeeded(state: nextStep, duration: 0.9)
         
 //        switch tapRecognizer.state {

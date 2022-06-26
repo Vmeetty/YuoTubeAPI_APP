@@ -59,6 +59,7 @@ class ViewController: UIViewController {
         K.Networking.FORTH_CHANNEL_ID
     ]
     
+    var selectedVideoIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,10 +95,10 @@ class ViewController: UIViewController {
         pageControl.currentPage = currentIndex
     }
     
-    
 }
 
 extension ViewController: NetworkManagerDelegate {
+    
     
     func didFailWithError(error: Error) {
         print(error)
@@ -112,28 +113,34 @@ extension ViewController: NetworkManagerDelegate {
         }
     }
     
-    func retrieveUploads(videos: [VideoModel]) {
-        cardAnimationBrain.videos = videos
-        cardAnimationBrain.configCardView(self)
-        cardAnimationBrain.handleTap()
+    func retrievePlaylist(videos: [VideoModel], target: Any) {
+        switch target {
+        case is CardAnimationBrain:
+            cardAnimationBrain.videos = videos
+            cardAnimationBrain.configCardView(self)
+            cardAnimationBrain.setVideoToCardVC(videos: videos, at: selectedVideoIndex)
+        case is PlaylistCollectionView:
+            playlistCollectionView.set(cells: videos)
+            playlistCollectionView.reloadData()
+        case is SecondPlaylistCollectionView:
+            secondPlaylistCollectionView.set(cells: videos)
+            secondPlaylistCollectionView.reloadData()
+        default: break
+        }
     }
     
-    func retrievePlaylist(videos: [VideoModel]) {
-        playlistCollectionView.set(cells: videos)
-        playlistCollectionView.reloadData()
-    }
-    
-    func retrieveSecondPlaylist(videos: [VideoModel]) {
-        secondPlaylistCollectionView.set(cells: videos)
-        secondPlaylistCollectionView.reloadData()
-    }
 }
 
 extension ViewController: GalleryCollectionViewDelegate {
-
-    func didGalleryItemSelected(_ channel: ChannelModel) {
-        networkManager.fetchPlaylistWith(channel.uploads, for: galleryCollectionView)
+    func didGalleryItemSelected(_ channel: ChannelModel, at index: Int) {
+        networkManager.fetchPlaylistWith(channel.uploads, for: cardAnimationBrain)
+        selectedVideoIndex = index
     }
-    
+}
+
+extension ViewController: PlaylistCollectionViewDelegate {
+    func didPlaylistItemSelected(_ video: VideoModel) {
+//        networkManager.fetchPlaylistWith(video., for: <#T##UICollectionView#>)
+    }
 }
 

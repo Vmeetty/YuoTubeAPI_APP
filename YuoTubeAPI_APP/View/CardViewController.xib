@@ -21,6 +21,7 @@
                 <outlet property="videoTitleLabel" destination="F4c-ty-aSp" id="yI1-tN-3Y8"/>
                 <outlet property="videoView" destination="Dqq-e7-66I" id="RTc-d2-WsZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewCountLabel" destination="Q6g-5G-SmJ" id="TZg-yf-Ubl"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

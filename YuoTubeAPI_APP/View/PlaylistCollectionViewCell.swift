@@ -69,7 +69,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         item = video
         if let item = item {
             NetworkManager.fetchVideoStatisticsWith(id: item.videoID) { viewCount in
-                self.viewsLabel.text = viewCount
+                self.viewsLabel.text = ViewCountFormatter.shared.formatViewCount(viewCount: viewCount) + " просмотров"
             }
             titleLabel.text = item.title
             guard item.imageURL != "" else { return }
