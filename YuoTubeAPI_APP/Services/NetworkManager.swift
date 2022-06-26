@@ -67,6 +67,7 @@ struct NetworkManager {
     
     private func playlistRequestWith(_ url: String, and parameters: [String: String], target: Any) {
         var videoItems = [VideoModel]()
+        var ids = [String]()
         AF.request(url, parameters: parameters)
             .validate()
             .responseDecodable(of: PlaylistData.self) { response in
@@ -75,27 +76,42 @@ struct NetworkManager {
                     let title = item.snippet.title
                     let imageURL = item.snippet.thumbnails.medium.url
                     let videoID = item.snippet.resourceId.videoId
+                    ids.append(videoID)
 
                     let newVideo = VideoModel(title: title, imageURL: imageURL, videoID: videoID)
                     videoItems.append(newVideo)
                 }
                 
-                delegate?.retrievePlaylist(videos: videoItems, target: target)
+                fetchVideoStatisticsWith(videoIDs: ids) { viewCounts in
+                    for (index, _) in videoItems.enumerated() {
+                        videoItems[index].viewCont = viewCounts[index]
+                    }
+                    delegate?.retrievePlaylist(videos: videoItems, target: target)
+                }
             }
     }
     
-    static func fetchVideoStatisticsWith(id: String, complition: @escaping (String) -> Void) {
-        let url = K.Networking.BASIC_VIDEO_URL
-        let parameters = ["part": "statistics", "id": id, "key": K.Networking.API_KEY]
+    
+    private func fetchVideoStatisticsWith(videoIDs: [String], complition: @escaping ([String]) -> Void) {
+        var url = K.Networking.BASIC_VIDEO_URL
+        let parameters = ["part": "statistics", "key": K.Networking.API_KEY]
+        for (index, id) in videoIDs.enumerated() {
+            url += "id=\(id)"
+            if index < videoIDs.count - 1 {
+                url += "&"
+            }
+        }
         AF.request(url, parameters: parameters)
             .validate()
             .responseDecodable(of: SinglVideoData.self) { response in
                 guard let videos = response.value else { return }
-                let viewCount = videos.items[0].statistics.viewCount
-                complition(viewCount)
+                var viewCounts = [String]()
+                for video in videos.items {
+                    viewCounts.append(video.statistics.viewCount)
+                }
+                complition(viewCounts)
             }
     }
-    
     
     static func retrieveThumbnailWith(url: String, complition: @escaping (UIImage, URL) -> Void){
         if let url = URL(string: url) {
