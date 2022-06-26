@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import youtube_ios_player_helper
 
 class CardViewController: UIViewController {
 
@@ -19,51 +20,72 @@ class CardViewController: UIViewController {
     
     @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var viewCountLabel: UILabel!
-    @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var videoView: YTPlayerView!
     
-    var player: AVPlayer!
-    var playerLayer: AVPlayerLayer!
     
     var videoData: [VideoModel]?
+    
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configUI()
         
-        let url = URL(string: "https://argon.stream.voidboost.in/movies/e96d1884c52c6c5744af956b7a8110fdf1ccd93d/a4f5462f261e43c8963cb2356497982f:2022062505:f20d99fc-1483-4785-b7e6-f7e2011773e0/240.mp4:hls:manifest.m3u8")!
-        player = AVPlayer(url: url)
         
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resize
-        
-        videoView.layer.addSublayer(playerLayer)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        player.play()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        playerLayer.frame = videoView.bounds
+        
     }
     
-    func configUI() {
+    func updateUI(videos: [VideoModel], at index: Int) {
+        videoData = videos
+        setCurrentVideoWith(index: index)
+    }
+    
+    private func configUI() {
         playButton.setTitle("", for: .normal)
         nextButton.setTitle("", for: .normal)
         previosButton.setTitle("", for: .normal)
     }
     
-    func updateUI(videos: [VideoModel], at index: Int) {
-        videoData = videos
+    private func setCurrentVideoWith(index: Int) {
         guard let videoData = videoData else { return }
-        
         let videoItem = videoData[index]
+        selectedIndex = index
+        videoView.load(withVideoId: videoItem.videoID, playerVars: ["controls": 0, "showinfo": 0])
         videoTitleLabel.text = videoItem.title
         viewCountLabel.text = ViewCountFormatter.shared.formatViewCount(viewCount: videoItem.viewCont) + " просмотров"
-        
+        playButton.isSelected = false
     }
-
+    
+    
+    @IBAction func playPauseAction(_ sender: UIButton) {
+        if playButton.isSelected {
+            videoView.pauseVideo()
+            playButton.setImage(UIImage(named: "play"), for: .normal)
+        } else {
+            videoView.playVideo()
+            playButton.setImage(UIImage(named: "pause"), for: .selected)
+        }
+        playButton.isSelected = !playButton.isSelected
+    }
+    
+    @IBAction func nextAction(_ sender: UIButton) {
+        selectedIndex += 1
+        setCurrentVideoWith(index: selectedIndex)
+    }
+    
+    @IBAction func previosAction(_ sender: UIButton) {
+        selectedIndex -= 1
+        setCurrentVideoWith(index: selectedIndex)
+    }
+    
 }

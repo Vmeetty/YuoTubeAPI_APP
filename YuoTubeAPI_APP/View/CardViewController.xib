@@ -47,7 +47,7 @@
                                         <constraint firstAttribute="height" constant="65" id="t6L-6m-ubq"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqq-e7-66I" userLabel="VideoArea">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqq-e7-66I" userLabel="VideoArea" customClass="YTPlayerView">
                                     <rect key="frame" x="0.0" y="65" width="414" height="200"/>
                                     <color key="backgroundColor" red="0.075056789799999996" green="0.078305075020000003" blue="0.081498579550000005" alpha="0.88094991720000004" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
@@ -113,16 +113,25 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="56" height="46"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="previos"/>
+                                                            <connections>
+                                                                <action selector="previosAction:" destination="-1" eventType="touchUpInside" id="1Zs-BY-WVb"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U33-wm-gDc" userLabel="PlayButton">
                                                             <rect key="frame" x="99" y="0.0" width="56" height="46"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="pause"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="play"/>
+                                                            <connections>
+                                                                <action selector="playPauseAction:" destination="-1" eventType="touchUpInside" id="hUu-N1-9Gu"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSV-SM-DL0">
                                                             <rect key="frame" x="198" y="0.0" width="56" height="46"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="next"/>
+                                                            <connections>
+                                                                <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="rMc-Nr-jAj"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -189,7 +198,7 @@
     <resources>
         <image name="down-arrow" width="165" height="69"/>
         <image name="next" width="32" height="32"/>
-        <image name="pause" width="32" height="32"/>
+        <image name="play" width="32" height="32"/>
         <image name="previos" width="32" height="32"/>
         <image name="volume.3.fill" catalog="system" width="128" height="86"/>
         <image name="volume.fill" catalog="system" width="128" height="128"/>
