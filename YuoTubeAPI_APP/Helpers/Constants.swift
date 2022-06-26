@@ -18,7 +18,7 @@ struct K {
     struct Colors {
         static let firstColor      = UIColor(red: 0.97, green: 0.24, blue: 0.58, alpha: 1.00)
         static let secondColor     = UIColor(red: 0.46, green: 0.29, blue: 0.95, alpha: 1.00)
-        static let backGroundColor = UIColor(red: 0.11, green: 0.10, blue: 0.09, alpha: 1.00)
+        static let backGroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.15, alpha: 1.00)
     }
     
     struct Networking {
