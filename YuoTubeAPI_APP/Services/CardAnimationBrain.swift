@@ -17,11 +17,12 @@ class CardAnimationBrain {
     
     var videos: [VideoModel]?
     
+    private var visualEffectView: UIVisualEffectView!
+    
     var cardViewController: CardViewController!
     private var rootViewController: UIViewController!
     
     var tapRecognizer: UITapGestureRecognizer!
-    
     
     private let cardHeight: CGFloat = 650
     private let cardHandleAreaHeight: CGFloat = 65
@@ -44,9 +45,13 @@ class CardAnimationBrain {
         if cardViewController != nil {
             cardViewController.view.removeFromSuperview()
             cardViewController.removeFromParent()
+            visualEffectView.removeFromSuperview()
         }
         rootViewController = sender
         
+        visualEffectView = UIVisualEffectView()
+        visualEffectView.frame = rootViewController.view.frame
+        rootViewController.view.addSubview(visualEffectView)
         cardViewController = CardViewController(nibName: "CardViewController", bundle: nil)
         cardViewController.view.frame = CGRect(x: 0, y: rootViewController.view.frame.height - cardHandleAreaHeight, width: rootViewController.view.bounds.width, height: cardHeight)
         cardViewController.view.layer.cornerRadius = handleViewCornerRadius
@@ -128,8 +133,15 @@ class CardAnimationBrain {
                 switch state {
                 case .expanded:
                     self.cardViewController.view.frame.origin.y = self.rootViewController.view.frame.height - self.cardHeight
+                    self.cardViewController.handleIcon.image = UIImage(named: "down-arrow")
+                    self.visualEffectView.frame.origin.y = 0
+                    print("expended")
                 case .collapsed:
+                    Timer.scheduledTimer(withTimeInterval: 0.9, repeats: false) { _ in
+                        self.visualEffectView.frame.origin.y = self.rootViewController.view.frame.height
+                    }
                     self.cardViewController.view.frame.origin.y = self.rootViewController.view.frame.height - self.cardHandleAreaHeight
+                    self.cardViewController.handleIcon.image = UIImage(named: "up-arrow")
                 }
             }
             
@@ -140,6 +152,19 @@ class CardAnimationBrain {
             
             frameAnimator.startAnimation()
             runningAnimations.append(frameAnimator)
+            
+            let blurAnimator = UIViewPropertyAnimator(duration: duration - 0.2, dampingRatio: 1) {
+                switch state {
+                case .expanded:
+                    Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in
+                        self.visualEffectView.effect = UIBlurEffect(style: .dark)
+                    }
+                case .collapsed:
+                    self.visualEffectView.effect = nil
+                }
+            }
+            blurAnimator.startAnimation()
+            self.runningAnimations.append(blurAnimator)
         }
     }
     
