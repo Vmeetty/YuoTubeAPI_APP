@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import AVFoundation
 import youtube_ios_player_helper
 
-class CardViewController: UIViewController {
+
+class CardViewController: UIViewController, YTPlayerViewDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var handleArea: UIView!
@@ -25,27 +25,21 @@ class CardViewController: UIViewController {
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var progressSlider: UISlider!
     
-    
     var videoData: [VideoModel]?
     
-    var selectedIndex = 0
+    let format = Formatter.shared
     
+    var selectedIndex = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        videoView.delegate = self
         configUI()
-        
-        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
+    func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
+        currentTimeLabel.text = format.secondsToTimestamp(interval: playTime)
+        progressSlider.value = playTime
     }
     
     func updateUI(videos: [VideoModel], at index: Int) {
@@ -65,8 +59,13 @@ class CardViewController: UIViewController {
         selectedIndex = index
         videoView.load(withVideoId: videoItem.videoID, playerVars: ["controls": 0, "showinfo": 0])
         videoTitleLabel.text = videoItem.title
-        viewCountLabel.text = Formatter.shared.formatViewCount(viewCount: videoItem.viewCont) + " просмотров"
-        durationLabel.text = Formatter.shared.formatVideo(duration: videoItem.duration)
+        viewCountLabel.text = format.formatViewCount(viewCount: videoItem.viewCont) + " просмотров"
+        durationLabel.text = format.formatVideo(duration: videoItem.duration)
+        progressSlider.minimumValue = 0
+        progressSlider.maximumValue = format.formatIntoSeconds(duration: videoItem.duration)
+        currentTimeLabel.text = format.secondsToTimestamp(interval: 0)
+        progressSlider.value = 0
+
         playButton.isSelected = false
     }
     
@@ -93,5 +92,12 @@ class CardViewController: UIViewController {
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
+        videoView.seek(toSeconds: sender.value, allowSeekAhead: true)
+    }
+    
+    @IBAction func volumeChanged(_ sender: UISlider) {
+        
     }
 }
+
+

@@ -81,6 +81,7 @@ extension ViewController {
     }
 }
 
+//MARK: - Formatter for view counts
 extension Formatter {
     static let withSeparator: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -94,10 +95,23 @@ extension Numeric {
     var formattedWithSeparator: String { Formatter.withSeparator.string(for: self) ?? "" }
 }
 
+
+//MARK: - Formatter for duration
 extension Formatter {
     static let positional: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional
         return formatter
     }()
+}
+
+extension ISO8601DateFormatter {
+    convenience init(_ formatOptions: Options) {
+        self.init()
+        self.formatOptions = formatOptions
+    }
+}
+
+extension Formatter {
+    static let iso8601withFractionalSeconds = ISO8601DateFormatter([.withInternetDateTime, .withFractionalSeconds])
 }

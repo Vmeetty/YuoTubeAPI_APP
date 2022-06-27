@@ -74,24 +74,32 @@
                                                                 <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="Rur-kU-JPV"/>
                                                             </connections>
                                                         </slider>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-UX-753">
-                                                            <rect key="frame" x="30" y="49" width="39" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-UX-753">
+                                                            <rect key="frame" x="30" y="49" width="100" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="XOH-Dw-55I"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-Kq-etW">
-                                                            <rect key="frame" x="335" y="49" width="39" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-Kq-etW">
+                                                            <rect key="frame" x="264" y="49" width="100" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="NrX-BP-0Hf"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="DD5-Kq-etW" firstAttribute="trailing" secondItem="bmP-Wf-mHc" secondAttribute="trailing" id="LLn-CC-Hbn"/>
                                                         <constraint firstItem="bmP-Wf-mHc" firstAttribute="leading" secondItem="qee-pH-19J" secondAttribute="leading" constant="30" id="fN1-3w-naS"/>
+                                                        <constraint firstItem="DD5-Kq-etW" firstAttribute="top" secondItem="bmP-Wf-mHc" secondAttribute="bottom" constant="-1" id="jZr-vl-DKf"/>
                                                         <constraint firstItem="bmP-Wf-mHc" firstAttribute="top" secondItem="qee-pH-19J" secondAttribute="top" constant="20" symbolic="YES" id="p0n-fD-s37"/>
+                                                        <constraint firstItem="cj9-UX-753" firstAttribute="leading" secondItem="bmP-Wf-mHc" secondAttribute="leading" id="qvO-52-OxM"/>
+                                                        <constraint firstItem="cj9-UX-753" firstAttribute="top" secondItem="bmP-Wf-mHc" secondAttribute="bottom" constant="-1" id="wBF-gX-ubS"/>
                                                         <constraint firstAttribute="trailing" secondItem="bmP-Wf-mHc" secondAttribute="trailing" constant="30" id="zh4-Nu-vcw"/>
                                                     </constraints>
                                                 </view>
@@ -148,6 +156,9 @@
                                                     <imageReference key="maximumValueImage" image="volume.3.fill" catalog="system" symbolScale="small"/>
                                                     <color key="maximumTrackTintColor" white="0.62954400510204078" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="volumeChanged:" destination="-1" eventType="valueChanged" id="cyH-Dt-nTw"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
                                             <constraints>
