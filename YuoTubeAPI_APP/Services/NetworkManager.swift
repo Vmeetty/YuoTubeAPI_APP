@@ -82,9 +82,10 @@ struct NetworkManager {
                     videoItems.append(newVideo)
                 }
                 
-                fetchVideoStatisticsWith(videoIDs: ids) { viewCounts in
+                fetchViewcountAndDurationWith(videoIDs: ids) { viewCounts, durations in
                     for (index, _) in videoItems.enumerated() {
                         videoItems[index].viewCont = viewCounts[index]
+                        videoItems[index].duration = durations[index]
                     }
                     delegate?.retrievePlaylist(videos: videoItems, target: target)
                 }
@@ -92,9 +93,9 @@ struct NetworkManager {
     }
     
     
-    private func fetchVideoStatisticsWith(videoIDs: [String], complition: @escaping ([String]) -> Void) {
+    private func fetchViewcountAndDurationWith(videoIDs: [String], complition: @escaping ([String], [String]) -> Void) {
         var url = K.Networking.BASIC_VIDEO_URL
-        let parameters = ["part": "statistics", "key": K.Networking.API_KEY]
+        let parameters = ["part": "statistics, contentDetails", "key": K.Networking.API_KEY]
         for (index, id) in videoIDs.enumerated() {
             url += "id=\(id)"
             if index < videoIDs.count - 1 {
@@ -106,10 +107,12 @@ struct NetworkManager {
             .responseDecodable(of: SinglVideoData.self) { response in
                 guard let videos = response.value else { return }
                 var viewCounts = [String]()
+                var durations = [String]()
                 for video in videos.items {
                     viewCounts.append(video.statistics.viewCount)
+                    durations.append(video.contentDetails.duration)
                 }
-                complition(viewCounts)
+                complition(viewCounts, durations)
             }
     }
     

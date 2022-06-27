@@ -14,5 +14,6 @@ struct VideoModel {
     let imageURL: String
     let videoID: String
     var viewCont: String = ""
+    var duration: String = ""
 }
 

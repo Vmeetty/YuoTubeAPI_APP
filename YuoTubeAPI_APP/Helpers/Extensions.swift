@@ -93,3 +93,11 @@ extension Formatter {
 extension Numeric {
     var formattedWithSeparator: String { Formatter.withSeparator.string(for: self) ?? "" }
 }
+
+extension Formatter {
+    static let positional: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        return formatter
+    }()
+}

@@ -13,11 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardViewController" customModule="YuoTubeAPI_APP" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="RUF-N0-UHR" id="9ty-gv-m2h"/>
+                <outlet property="currentTimeLabel" destination="cj9-UX-753" id="b9L-xT-ypc"/>
+                <outlet property="durationLabel" destination="DD5-Kq-etW" id="F09-Ct-qk8"/>
                 <outlet property="handleArea" destination="Sz5-zZ-rP3" id="gjL-dW-xfq"/>
                 <outlet property="handleIcon" destination="VDy-Dq-wTL" id="WSi-Rm-ea8"/>
                 <outlet property="nextButton" destination="NSV-SM-DL0" id="Qeq-cb-2pa"/>
                 <outlet property="playButton" destination="U33-wm-gDc" id="R6d-Nn-ym1"/>
                 <outlet property="previosButton" destination="5g2-s5-Va2" id="Q2a-Zd-Wab"/>
+                <outlet property="progressSlider" destination="bmP-Wf-mHc" id="beF-3R-q9f"/>
                 <outlet property="videoTitleLabel" destination="F4c-ty-aSp" id="yI1-tN-3Y8"/>
                 <outlet property="videoView" destination="Dqq-e7-66I" id="RTc-d2-WsZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -67,18 +70,21 @@
                                                             <rect key="frame" x="28" y="20" width="338" height="31"/>
                                                             <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="maximumTrackTintColor" white="0.63" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="Rur-kU-JPV"/>
+                                                            </connections>
                                                         </slider>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-UX-753">
-                                                            <rect key="frame" x="30" y="49" width="29" height="12"/>
+                                                            <rect key="frame" x="30" y="49" width="39" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-Kq-etW">
-                                                            <rect key="frame" x="335" y="49" width="29" height="12"/>
+                                                            <rect key="frame" x="335" y="49" width="39" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>

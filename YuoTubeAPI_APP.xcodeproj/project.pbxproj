@@ -34,7 +34,7 @@
 		CEFE6A2428652E1C00E18DD3 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2328652E1C00E18DD3 /* Displayable.swift */; };
 		CEFE6A2A28655B4600E18DD3 /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2928655B4600E18DD3 /* PlaylistModel.swift */; };
 		CEFE6A302867C71E00E18DD3 /* SinglVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2F2867C71E00E18DD3 /* SinglVideoData.swift */; };
-		CEFE6A322867D6BF00E18DD3 /* ViewCountFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A312867D6BF00E18DD3 /* ViewCountFormatter.swift */; };
+		CEFE6A322867D6BF00E18DD3 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A312867D6BF00E18DD3 /* Formatter.swift */; };
 		E56DE98E98FD266826CDD129 /* Pods_YuoTubeAPI_APP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C914F245931CDACD423FA011 /* Pods_YuoTubeAPI_APP.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +71,7 @@
 		CEFE6A2528653C8B00E18DD3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFE6A2928655B4600E18DD3 /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
 		CEFE6A2F2867C71E00E18DD3 /* SinglVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglVideoData.swift; sourceTree = "<group>"; };
-		CEFE6A312867D6BF00E18DD3 /* ViewCountFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCountFormatter.swift; sourceTree = "<group>"; };
+		CEFE6A312867D6BF00E18DD3 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		DCAA8F0558C80C40E0B43A52 /* Pods-YuoTubeAPI_APP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuoTubeAPI_APP.release.xcconfig"; path = "Target Support Files/Pods-YuoTubeAPI_APP/Pods-YuoTubeAPI_APP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,7 +183,7 @@
 				CE00A413285C03CE00DAC418 /* GalleryTimer.swift */,
 				CE00A4212860445300DAC418 /* Extensions.swift */,
 				CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */,
-				CEFE6A312867D6BF00E18DD3 /* ViewCountFormatter.swift */,
+				CEFE6A312867D6BF00E18DD3 /* Formatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -334,7 +334,7 @@
 				CE00A420285E2CE600DAC418 /* CardAnimationBrain.swift in Sources */,
 				CE00A3F1285B319A00DAC418 /* AppDelegate.swift in Sources */,
 				CEFE6A302867C71E00E18DD3 /* SinglVideoData.swift in Sources */,
-				CEFE6A322867D6BF00E18DD3 /* ViewCountFormatter.swift in Sources */,
+				CEFE6A322867D6BF00E18DD3 /* Formatter.swift in Sources */,
 				CE00A40E285BE30400DAC418 /* Constants.swift in Sources */,
 				CEFE6A0F28630EE700E18DD3 /* PlaylistData.swift in Sources */,
 				CEFE6A112863110100E18DD3 /* NetworkManager.swift in Sources */,

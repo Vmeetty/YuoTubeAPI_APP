@@ -71,7 +71,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         channelItem = channel
         if let item = channelItem {
             titleLabel.text = item.title
-            viewsLabel.text = ViewCountFormatter.shared.formatViewCount(viewCount: item.subscribers) + " подписчиков"
+            viewsLabel.text = Formatter.shared.formatViewCount(viewCount: item.subscribers) + " подписчиков"
             guard channel.thumbnail != "" else { return }
             if let cachedData = CacheManager.getImageCache(channel.thumbnail) {
                 mainImageView.image = UIImage(data: cachedData)

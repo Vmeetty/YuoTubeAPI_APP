@@ -68,7 +68,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     func setCell(video: VideoModel) {
         item = video
         if let item = item {
-            self.viewsLabel.text = ViewCountFormatter.shared.formatViewCount(viewCount: item.viewCont) + " просмотров"
+            self.viewsLabel.text = Formatter.shared.formatViewCount(viewCount: item.viewCont) + " просмотров"
             titleLabel.text = item.title
             guard item.imageURL != "" else { return }
             if let cachedData = CacheManager.getImageCache(item.imageURL) {

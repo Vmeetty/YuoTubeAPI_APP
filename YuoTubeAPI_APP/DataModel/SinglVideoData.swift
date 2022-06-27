@@ -13,8 +13,13 @@ struct SinglVideoData: Codable {
 
 struct VideoItems: Codable {
     let statistics: VideoStatistics
+    let contentDetails: VideoContentDetails
 }
 
 struct VideoStatistics: Codable {
     let viewCount: String
+}
+
+struct VideoContentDetails: Codable {
+    let duration: String
 }

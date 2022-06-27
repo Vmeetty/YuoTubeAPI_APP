@@ -21,6 +21,9 @@ class CardViewController: UIViewController {
     @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var viewCountLabel: UILabel!
     @IBOutlet weak var videoView: YTPlayerView!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var progressSlider: UISlider!
     
     
     var videoData: [VideoModel]?
@@ -62,7 +65,8 @@ class CardViewController: UIViewController {
         selectedIndex = index
         videoView.load(withVideoId: videoItem.videoID, playerVars: ["controls": 0, "showinfo": 0])
         videoTitleLabel.text = videoItem.title
-        viewCountLabel.text = ViewCountFormatter.shared.formatViewCount(viewCount: videoItem.viewCont) + " просмотров"
+        viewCountLabel.text = Formatter.shared.formatViewCount(viewCount: videoItem.viewCont) + " просмотров"
+        durationLabel.text = Formatter.shared.formatVideo(duration: videoItem.duration)
         playButton.isSelected = false
     }
     
@@ -88,4 +92,6 @@ class CardViewController: UIViewController {
         setCurrentVideoWith(index: selectedIndex)
     }
     
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+    }
 }
