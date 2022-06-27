@@ -15,8 +15,4 @@ struct ChannelModel {
     let uploads: String
 }
 
-extension ChannelModel: Displayable {
-    var titleLabelText: String {
-        title
-    }
-}
+
