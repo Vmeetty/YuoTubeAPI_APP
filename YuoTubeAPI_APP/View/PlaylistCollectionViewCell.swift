@@ -36,6 +36,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    var item: VideoModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,13 +45,13 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         addSubview(titleLabel)
         addSubview(viewsLabel)
         
-        backgroundColor = .black
+        backgroundColor = K.Colors.backGroundColor
         
         //MARK: - mainImageView constraints
         mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         mainImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        mainImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        mainImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
         
         //MARK: - titleLabel constraints
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -62,6 +63,27 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         viewsLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         viewsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
         
+    }
+    
+    func setCell(video: VideoModel) {
+        item = video
+        if let item = item {
+            self.viewsLabel.text = Formatter.shared.formatViewCount(viewCount: item.viewCont) + " просмотров"
+            titleLabel.text = item.title
+            guard item.imageURL != "" else { return }
+            if let cachedData = CacheManager.getImageCache(item.imageURL) {
+                mainImageView.image = UIImage(data: cachedData)
+                return
+            }
+            NetworkManager.retrieveThumbnailWith(url: item.imageURL) { [weak self] image, url in
+                if url.absoluteString != self?.item?.imageURL {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.mainImageView.image = image
+                }
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

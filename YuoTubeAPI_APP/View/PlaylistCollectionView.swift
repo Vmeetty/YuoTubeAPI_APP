@@ -7,16 +7,22 @@
 
 import UIKit
 
+protocol PlaylistCollectionViewDelegate: AnyObject {
+    func didPlaylistItemSelected(_ videos: [VideoModel], at index: Int)
+}
+
 class PlaylistCollectionView: UICollectionView {
 
     var cells = [VideoModel]()
+    
+    weak var playListDelegate: PlaylistCollectionViewDelegate?
     
     init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        backgroundColor = .black
+        backgroundColor = K.Colors.backGroundColor
         delegate = self
         dataSource = self
         register(PlaylistCollectionViewCell.self, forCellWithReuseIdentifier: PlaylistCollectionViewCell.reuseID)
@@ -46,11 +52,14 @@ extension PlaylistCollectionView: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: PlaylistCollectionViewCell.reuseID, for: indexPath) as! PlaylistCollectionViewCell
-        cell.mainImageView.image = cells[indexPath.row].image
-        cell.titleLabel.text = cells[indexPath.row].title
-        cell.viewsLabel.text = cells[indexPath.row].views
+        
+        cell.setCell(video: cells[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        playListDelegate?.didPlaylistItemSelected(cells, at: indexPath.row)
     }
 }
 

@@ -1,21 +1,21 @@
 //
-//  GalleryCollectionView.swift
+//  SecondPlaylistCollectionView.swift
 //  YuoTubeAPI_APP
 //
-//  Created by user on 20.06.2022.
+//  Created by user on 17.06.2022.
 //
 
 import UIKit
 
-protocol GalleryCollectionViewDelegate: AnyObject {
-    func didGalleryItemSelected(_ channel: ChannelModel, at index: Int)
+protocol SecondPlaylistCollectionViewDelegate: AnyObject {
+    func did2ndPlaylistItemSelected(_ videos: [VideoModel], at index: Int)
 }
 
-class GalleryCollectionView: UICollectionView {
+class SecondPlaylistCollectionView: UICollectionView {
 
-    weak var galleryDelegate: GalleryCollectionViewDelegate?
+    weak var playListDelegate: SecondPlaylistCollectionViewDelegate?
     
-    var cells = [ChannelModel]()
+    var cells = [VideoModel]()
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -26,54 +26,49 @@ class GalleryCollectionView: UICollectionView {
         delegate = self
         dataSource = self
         
-        register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: GalleryCollectionViewCell.reuseID)
+        register(SecondPlaylistCollectionViewCell.self, forCellWithReuseIdentifier: SecondPlaylistCollectionViewCell.reuseID)
         translatesAutoresizingMaskIntoConstraints = false
-        
+        layout.minimumLineSpacing = K.playlistMinimumLineSpacing
         contentInset = UIEdgeInsets(top: 0, left: K.leftDistanceToView, bottom: 0, right: K.rightDistanceToView)
         
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(cells: [ChannelModel]) {
+    func set(cells: [VideoModel]) {
         self.cells = cells
     }
 }
 
-extension GalleryCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SecondPlaylistCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseID, for: indexPath) as! GalleryCollectionViewCell
-        
-        cell.setCell(channel: cells[indexPath.row])
+        let cell = dequeueReusableCell(withReuseIdentifier: SecondPlaylistCollectionViewCell.reuseID, for: indexPath) as! SecondPlaylistCollectionViewCell
+       
+        cell.setCell(video: cells[indexPath.row])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // pass model to the CardViewController
-        
-        // show
-        galleryDelegate?.didGalleryItemSelected(cells[indexPath.row], at: 0)
-        
+        playListDelegate?.did2ndPlaylistItemSelected(cells, at: indexPath.row)
     }
 }
 
-extension GalleryCollectionView: UICollectionViewDelegateFlowLayout {
+extension SecondPlaylistCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: K.galleryItemWidth, height: frame.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return CGSize(width: K.itemWidth, height: frame.height)
     }
 }
+
+
 
 

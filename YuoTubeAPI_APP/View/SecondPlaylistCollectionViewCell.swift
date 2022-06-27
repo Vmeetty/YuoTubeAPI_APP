@@ -1,17 +1,16 @@
 //
-//  GalleryCollectionViewCell.swift
+//  SecondPlaylistCollectionViewCell.swift
 //  YuoTubeAPI_APP
 //
 //  Created by user on 17.06.2022.
 //
 
 import UIKit
-import Alamofire
 
-class GalleryCollectionViewCell: UICollectionViewCell {
+class SecondPlaylistCollectionViewCell: UICollectionViewCell {
     
-    static let reuseID = "GalleryCollectionViewCell"
-
+    static let reuseID = "SecondPlaylistCollectionViewCell"
+    
     let mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +22,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -31,13 +30,13 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     let viewsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var channelItem: ChannelModel?
+    var item: VideoModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,39 +45,38 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         addSubview(titleLabel)
         addSubview(viewsLabel)
         
+        backgroundColor = K.Colors.backGroundColor
+        
         //MARK: - mainImageView constraints
         mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         mainImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        mainImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
         
         //MARK: - titleLabel constraints
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
-            titleLabel.bottomAnchor.constraint(equalTo: viewsLabel.topAnchor, constant: -10)
-        ])
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 20).isActive = true
         
-        //MARK: - viewsLabel constrsints
-        NSLayoutConstraint.activate([
-            viewsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            viewsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
-            viewsLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
-        ])
+        //MARK: - viewsLabel constraints
+        viewsLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        viewsLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        viewsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        
     }
     
-    func setCell(channel: ChannelModel) {
-        channelItem = channel
-        if let item = channelItem {
+    func setCell(video: VideoModel) {
+        item = video
+        if let item = item {
+            self.viewsLabel.text = Formatter.shared.formatViewCount(viewCount: item.viewCont) + " просмотров"
             titleLabel.text = item.title
-            viewsLabel.text = Formatter.shared.formatViewCount(viewCount: item.subscribers) + " подписчиков"
-            guard channel.thumbnail != "" else { return }
-            if let cachedData = CacheManager.getImageCache(channel.thumbnail) {
+            guard item.imageURL != "" else { return }
+            if let cachedData = CacheManager.getImageCache(item.imageURL) {
                 mainImageView.image = UIImage(data: cachedData)
                 return
             }
-            NetworkManager.retrieveThumbnailWith(url: item.thumbnail) { [weak self] image, url in
-                if url.absoluteString != self?.channelItem?.thumbnail {
+            NetworkManager.retrieveThumbnailWith(url: item.imageURL) { [weak self] image, url in
+                if url.absoluteString != self?.item?.imageURL {
                     return
                 }
                 DispatchQueue.main.async {
@@ -87,8 +85,6 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
