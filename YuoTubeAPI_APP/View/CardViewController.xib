@@ -66,8 +66,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qee-pH-19J">
                                                     <rect key="frame" x="0.0" y="0.0" width="394" height="69"/>
                                                     <subviews>
-                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bmP-Wf-mHc">
-                                                            <rect key="frame" x="28" y="20" width="338" height="31"/>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bmP-Wf-mHc">
+                                                            <rect key="frame" x="28" y="20" width="338" height="128"/>
                                                             <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="maximumTrackTintColor" white="0.63" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <connections>
@@ -75,7 +75,7 @@
                                                             </connections>
                                                         </slider>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-UX-753">
-                                                            <rect key="frame" x="30" y="49" width="100" height="17"/>
+                                                            <rect key="frame" x="30" y="146" width="100" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="XOH-Dw-55I"/>
                                                             </constraints>
@@ -84,7 +84,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-Kq-etW">
-                                                            <rect key="frame" x="264" y="49" width="100" height="17"/>
+                                                            <rect key="frame" x="264" y="146" width="100" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="NrX-BP-0Hf"/>
                                                             </constraints>
@@ -217,6 +217,7 @@
         <image name="next" width="32" height="32"/>
         <image name="play" width="32" height="32"/>
         <image name="previos" width="32" height="32"/>
+        <image name="vertical" width="128" height="128"/>
         <image name="volume.3.fill" catalog="system" width="128" height="86"/>
         <image name="volume.fill" catalog="system" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">

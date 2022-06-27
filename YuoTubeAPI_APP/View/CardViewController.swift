@@ -51,6 +51,7 @@ class CardViewController: UIViewController, YTPlayerViewDelegate {
         playButton.setTitle("", for: .normal)
         nextButton.setTitle("", for: .normal)
         previosButton.setTitle("", for: .normal)
+        progressSlider.setThumbImage(UIImage(named: "or"), for: .normal)
     }
     
     private func setCurrentVideoWith(index: Int) {
