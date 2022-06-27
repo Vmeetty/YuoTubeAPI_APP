@@ -17,7 +17,6 @@
 		CE00A40E285BE30400DAC418 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A40D285BE30400DAC418 /* Constants.swift */; };
 		CE00A410285BECB200DAC418 /* PlaylistCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A40F285BECB200DAC418 /* PlaylistCollectionView.swift */; };
 		CE00A412285BECC800DAC418 /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A411285BECC800DAC418 /* PlaylistCollectionViewCell.swift */; };
-		CE00A414285C03CE00DAC418 /* GalleryTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A413285C03CE00DAC418 /* GalleryTimer.swift */; };
 		CE00A416285C290100DAC418 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A415285C290100DAC418 /* GalleryCollectionViewCell.swift */; };
 		CE00A418285CAA2700DAC418 /* SecondPlaylistCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A417285CAA2700DAC418 /* SecondPlaylistCollectionView.swift */; };
 		CE00A41A285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00A419285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift */; };
@@ -31,7 +30,6 @@
 		CEFE6A132863241B00E18DD3 /* ChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A122863241B00E18DD3 /* ChannelData.swift */; };
 		CEFE6A152863566A00E18DD3 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A142863566A00E18DD3 /* ChannelModel.swift */; };
 		CEFE6A1F2864B2F100E18DD3 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */; };
-		CEFE6A2428652E1C00E18DD3 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2328652E1C00E18DD3 /* Displayable.swift */; };
 		CEFE6A2A28655B4600E18DD3 /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2928655B4600E18DD3 /* PlaylistModel.swift */; };
 		CEFE6A302867C71E00E18DD3 /* SinglVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A2F2867C71E00E18DD3 /* SinglVideoData.swift */; };
 		CEFE6A322867D6BF00E18DD3 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6A312867D6BF00E18DD3 /* Formatter.swift */; };
@@ -53,7 +51,6 @@
 		CE00A40D285BE30400DAC418 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE00A40F285BECB200DAC418 /* PlaylistCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionView.swift; sourceTree = "<group>"; };
 		CE00A411285BECC800DAC418 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE00A413285C03CE00DAC418 /* GalleryTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryTimer.swift; sourceTree = "<group>"; };
 		CE00A415285C290100DAC418 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE00A417285CAA2700DAC418 /* SecondPlaylistCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPlaylistCollectionView.swift; sourceTree = "<group>"; };
 		CE00A419285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -67,7 +64,6 @@
 		CEFE6A122863241B00E18DD3 /* ChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelData.swift; sourceTree = "<group>"; };
 		CEFE6A142863566A00E18DD3 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
-		CEFE6A2328652E1C00E18DD3 /* Displayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displayable.swift; sourceTree = "<group>"; };
 		CEFE6A2528653C8B00E18DD3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFE6A2928655B4600E18DD3 /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
 		CEFE6A2F2867C71E00E18DD3 /* SinglVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglVideoData.swift; sourceTree = "<group>"; };
@@ -128,7 +124,6 @@
 			children = (
 				CE00A3F0285B319A00DAC418 /* AppDelegate.swift */,
 				CE00A3F2285B319A00DAC418 /* SceneDelegate.swift */,
-				CEFE6A2328652E1C00E18DD3 /* Displayable.swift */,
 				CE00A4232860452700DAC418 /* Helpers */,
 				CE00A424286045F400DAC418 /* Services */,
 				CE00A408285BAEAC00DAC418 /* Model */,
@@ -180,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				CE00A40D285BE30400DAC418 /* Constants.swift */,
-				CE00A413285C03CE00DAC418 /* GalleryTimer.swift */,
 				CE00A4212860445300DAC418 /* Extensions.swift */,
 				CEFE6A1E2864B2F100E18DD3 /* CacheManager.swift */,
 				CEFE6A312867D6BF00E18DD3 /* Formatter.swift */,
@@ -329,7 +323,6 @@
 				CEFE6A2A28655B4600E18DD3 /* PlaylistModel.swift in Sources */,
 				CEFE6A0C2860642F00E18DD3 /* GalleryCollectionView.swift in Sources */,
 				CE00A3F5285B319A00DAC418 /* ViewController.swift in Sources */,
-				CE00A414285C03CE00DAC418 /* GalleryTimer.swift in Sources */,
 				CEFE6A1F2864B2F100E18DD3 /* CacheManager.swift in Sources */,
 				CE00A420285E2CE600DAC418 /* CardAnimationBrain.swift in Sources */,
 				CE00A3F1285B319A00DAC418 /* AppDelegate.swift in Sources */,
@@ -342,7 +335,6 @@
 				CE00A41D285DF2C200DAC418 /* CardViewController.swift in Sources */,
 				CE00A416285C290100DAC418 /* GalleryCollectionViewCell.swift in Sources */,
 				CE00A41A285CAA7300DAC418 /* SecondPlaylistCollectionViewCell.swift in Sources */,
-				CEFE6A2428652E1C00E18DD3 /* Displayable.swift in Sources */,
 				CEFE6A132863241B00E18DD3 /* ChannelData.swift in Sources */,
 				CE00A3F3285B319A00DAC418 /* SceneDelegate.swift in Sources */,
 				CEFE6A152863566A00E18DD3 /* ChannelModel.swift in Sources */,

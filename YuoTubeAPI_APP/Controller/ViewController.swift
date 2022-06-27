@@ -81,8 +81,6 @@ class ViewController: UIViewController {
         setupScrollView() // extension file
         setupUI() // extension file
         
-//        cardAnimationBrain.configCardView(self)
-        
     }
 
     @objc func moveToTheNextIndex() {

@@ -100,13 +100,6 @@ class CardAnimationBrain {
     
     func handleTap() {
         animateTransitionIfNeeded(state: nextStep, duration: 0.9)
-        
-//        switch tapRecognizer.state {
-//        case .ended:
-//            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
-//        default:
-//            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
-//        }
     }
     
     private func handlePan(recognizer: UIPanGestureRecognizer) {
