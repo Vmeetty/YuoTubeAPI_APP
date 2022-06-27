@@ -84,15 +84,19 @@ class ViewController: UIViewController {
     }
 
     @objc func moveToTheNextIndex() {
-        if currentIndex < galleryCells.count - 1 {
-            currentIndex += 1
+        if !galleryCollectionView.isDecelerating {
+            if currentIndex < galleryCells.count - 1 {
+                currentIndex += 1
+            } else {
+                currentIndex = 0
+            }
+            galleryCollectionView.isPagingEnabled = false
+            galleryCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
+            galleryCollectionView.isPagingEnabled = true
+            pageControl.currentPage = currentIndex
         } else {
-            currentIndex = 0
+            print("decelerating")
         }
-        galleryCollectionView.isPagingEnabled = false
-        galleryCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
-        galleryCollectionView.isPagingEnabled = true
-        pageControl.currentPage = currentIndex
     }
     
 }

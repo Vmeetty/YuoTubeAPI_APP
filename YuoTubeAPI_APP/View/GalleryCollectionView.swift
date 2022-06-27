@@ -58,12 +58,12 @@ extension GalleryCollectionView: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // pass model to the CardViewController
-        
-        // show
+
         galleryDelegate?.didGalleryItemSelected(cells[indexPath.row], at: 0)
         
     }
+    
+    
 }
 
 extension GalleryCollectionView: UICollectionViewDelegateFlowLayout {
